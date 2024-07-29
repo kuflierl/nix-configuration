@@ -88,9 +88,9 @@ mkdir -p /mnt/boot
 mount -o rw,noatime $EFIPARTDEV /mnt/boot
 
 # generate secureboot keys
-mkdir -p /mnt/persist/secureboot /mnt/usr/share
+mkdir -p /mnt/persist/secureboot/keys /mnt/usr/share
 ln -s ../../persist/secureboot /mnt/usr/share/secureboot
-nix-shell -p sbctl --run "sbctl create-keys -d /mnt/usr/share/secureboot"
+nix-shell -p sbctl --run "sbctl create-keys -d /mnt/usr/share/secureboot -e /mnt/usr/share/secureboot/keys"
 
 # generate config
 nixos-generate-config --root /mnt
