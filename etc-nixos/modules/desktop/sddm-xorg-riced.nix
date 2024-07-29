@@ -5,5 +5,5 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = false;
   imports = [ ./xserver.nix ];
-  # todo add theme
+  # todo add defualt theme
 }
