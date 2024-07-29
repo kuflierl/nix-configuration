@@ -58,7 +58,7 @@ parted -s $TGTDEV \
 mkfs.fat -n EFI -F 32 $EFIPARTDEV
 # set up luks format (quiet)
 crypto_pw="$(ask_new_password)"
-cryptsetup -q luksFormat --type=luks1 $LUKSPARTDEV <<< "$crypto_pw"
+cryptsetup -q luksFormat --type=luks2 $LUKSPARTDEV <<< "$crypto_pw"
 cryptsetup -q open $LUKSPARTDEV $LUKSNAME <<< "$crypto_pw"
 # set up btrfs
 mkfs.btrfs -f -L NixOS $LUKSMAPPERDEV
