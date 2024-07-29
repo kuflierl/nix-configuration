@@ -18,5 +18,6 @@ mount -o $BTRFS_OPT,subvol=@home $LUKSMAPPERDEV /mnt/home/
 mount -o $BTRFS_OPT,subvol=@nix $LUKSMAPPERDEV /mnt/nix/
 mount -o $BTRFS_OPT,subvol=@nixos-config $LUKSMAPPERDEV /mnt/etc/nixos/
 mount -o $BTRFS_OPT,subvol=@log $LUKSMAPPERDEV /mnt/var/log
+mount -o $BTRFS_OPT,subvol=@persist $LUKSMAPPERDEV /mnt/persist
 
 mount -o rw,noatime $EFIPARTDEV /mnt/efi

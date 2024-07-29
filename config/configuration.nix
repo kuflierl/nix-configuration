@@ -8,7 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./modules/boot/encrypted-initrd-grub.nix
+      ./modules/boot/seperated-efi-grub.nix
+      ./modules/boot/crypto-stage1.nix
       ./modules/network/networkmanager-laptop.nix
       ./modules/network/firewall.nix
       ./modules/desktop/hyprland-riced.nix

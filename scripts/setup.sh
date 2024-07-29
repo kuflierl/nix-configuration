@@ -57,7 +57,6 @@ mkfs.fat -n EFI -F 32 $EFIPARTDEV
 # set up luks format (quiet)
 crypto_pw="$(ask_new_password)"
 cryptsetup -q luksFormat --type=luks1 $LUKSPARTDEV <<< "$crypto_pw"
-# todo: generate a keyfile instead
 cryptsetup -q open $LUKSPARTDEV $LUKSNAME <<< "$crypto_pw"
 # set up btrfs
 mkfs.btrfs -f -L NixOS $LUKSMAPPERDEV
@@ -70,19 +69,26 @@ btrfs subvolume create /mnt/@snapshots
 btrfs subvolume create /mnt/@nix
 btrfs subvolume create /mnt/@nixos-config
 btrfs subvolume create /mnt/@log
+btrfs subvolume create /mnt/@persist
 
 umount /mnt
 
 mount -o $BTRFS_OPT,subvol=@ $LUKSMAPPERDEV /mnt
-mkdir -p /mnt/home /mnt/nix /mnt/etc/nixos /mnt/var/log
+mkdir -p /mnt/home /mnt/nix /mnt/etc/nixos /mnt/var/log /mnt/persist
 
 mount -o $BTRFS_OPT,subvol=@home $LUKSMAPPERDEV /mnt/home/
 mount -o $BTRFS_OPT,subvol=@nix $LUKSMAPPERDEV /mnt/nix/
 mount -o $BTRFS_OPT,subvol=@nixos-config $LUKSMAPPERDEV /mnt/etc/nixos/
 mount -o $BTRFS_OPT,subvol=@log $LUKSMAPPERDEV /mnt/var/log
+mount -o $BTRFS_OPT,subvol=@persist $LUKSMAPPERDEV /mnt/persist
 
 mkdir -p /mnt/efi
 mount -o rw,noatime $EFIPARTDEV /mnt/efi
+
+# setup stage 2 crypto
+mkdir -p /mnt/persist/boot
+dd if=/dev/urandom of=/mnt/persist/boot/nixos.keyfile.bin bs=1024 count=4
+cryptsetup -q luksAddKey $LUKSPARTDEV /mnt/persist/boot/nixos.keyfile.bin <<< "$crypto_pw"
 
 # setup nix
 nixos-generate-config --root /mnt
