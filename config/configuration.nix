@@ -12,7 +12,7 @@
       ./modules/network/networkmanager-laptop.nix
       ./modules/network/firewall.nix
       ./modules/desktop/hyprland-riced.nix
-      ./modules/desktop/sddm-wayland-riced.nix
+      ./modules/desktop/sddm-xorg-riced.nix
       ./modules/sound/pipewire.nix
     ];  
 
@@ -27,6 +27,8 @@
     keyMap = "de";
   #   useXkbConfig = true; # use xkb.options in tty.
   };
+  services.xserver.xkb.layout = "de";
+  
  
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -82,7 +84,7 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 
 }
 
