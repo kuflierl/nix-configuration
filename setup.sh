@@ -12,28 +12,15 @@ LUKSMAPPERDEV="/dev/mapper/$LUKSNAME"
 
 
 wipefs -a $TGTDEV
-dd if=/dev/zero of=$TGTDEV bs=4096 count=256K
 
-sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk ${TGTDEV}
-  g # clear the in memory partition table
-  n # new partition
-  1 # partition number 1
-    # default - start at beginning of disk 
-  +512M # 512 MB boot parttion
-  t # change type
-  1 # set to type EFI
-  n # new partition
-  2 # partion number 2
-    # default, start immediately after preceding partition
-    # default, extend partition to end of disk
-  M # Enter MBR mode
-  a # make a partition bootable
-  #1 # bootable partition is partition 1 -- /dev/sda1
-  r # return
-  p # print the in-memory partition table
-  w # write the partition table
-  q # and we're done
-EOF
+# create partition table
+parted -s $TGTDEV \
+  mklabel gpt # create a new gpt partition table
+  mkpart EFI fat32 1MB 512MB # create the EFI partition
+  set 1 esp on # set partition flag esp to true (EFI boot)
+  mkpart root 512MB 100% # fill the rest of the disk with btrfs
+  print
+
 # set up efi partition
 mkfs.fat -n EFI -F 32 $EFIPARTDEV
 # set up crypto
