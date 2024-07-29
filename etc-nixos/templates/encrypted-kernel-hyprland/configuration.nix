@@ -6,30 +6,15 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./modules/boot/seperated-efi-grub.nix
-      ./modules/boot/crypto-stage1.nix
-      ./modules/network/networkmanager-laptop.nix
-      ./modules/network/firewall.nix
-      ./modules/desktop/hyprland-riced.nix
-      ./modules/desktop/sddm-xorg-riced.nix
-      ./modules/sound/pipewire.nix
+    [ 
+      ../../modules/boot/seperated-efi-grub.nix
+      ../../modules/boot/crypto-stage1.nix
+      ../../modules/network/networkmanager-laptop.nix
+      ../../modules/network/firewall.nix
+      ../../modules/desktop/hyprland-riced.nix
+      ../../modules/desktop/sddm-xorg-riced.nix
+      ../../modules/sound/pipewire.nix
     ];  
-
-  networking.hostName = "nixos"; # Define your hostname.
-
-  time.timeZone = "Europe/Berlin";
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-  #   font = "Lat2-Terminus16";
-    keyMap = "de";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  };
-  services.xserver.xkb.layout = "de";
-  
  
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -86,6 +71,5 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }
 
