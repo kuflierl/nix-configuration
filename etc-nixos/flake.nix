@@ -17,6 +17,7 @@
       kul2-secureboot = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          lanzaboote.nixosModules.lanzaboote
           ./machines/kul2-secureboot/configuration.nix
         ];
       };
