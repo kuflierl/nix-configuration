@@ -35,7 +35,7 @@ function ask_new_password {
 
 # generated
 PROJECT_ROOT="$(realpath $(dirname $(realpath $0))/../../..)"
-CONFIG_NAME="$(basename $(dirname $(realpath -s $0)))"
+CONFIG_NAME="$(basename $(realpath -s $(dirname $(realpath -s $0))/..))"
 EFIPARTDEV="${TGTDEV}1"
 LUKSPARTDEV="${TGTDEV}2"
 LUKSMAPPERDEV="/dev/mapper/$LUKSNAME"
