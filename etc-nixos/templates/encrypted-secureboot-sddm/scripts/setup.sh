@@ -84,14 +84,13 @@ mount -o $BTRFS_OPT,subvol=@nixos-config $LUKSMAPPERDEV /mnt/etc/nixos/
 mount -o $BTRFS_OPT,subvol=@log $LUKSMAPPERDEV /mnt/var/log
 mount -o $BTRFS_OPT,subvol=@persist $LUKSMAPPERDEV /mnt/persist
 
-mkdir -p /mnt/efi
-mount -o rw,noatime $EFIPARTDEV /mnt/efi
+mkdir -p /mnt/boot
+mount -o rw,noatime $EFIPARTDEV /mnt/boot
 
-# setup stage 2 crypto
-mkdir -p /mnt/persist/boot
-dd if=/dev/urandom of=/mnt/persist/boot/nixos.keyfile.bin bs=1024 count=4
-chmod 600 /mnt/persist/boot/nixos.keyfile.bin
-cryptsetup -q luksAddKey $LUKSPARTDEV /mnt/persist/boot/nixos.keyfile.bin <<< "$crypto_pw"
+# generate secureboot keys
+mkdir -p /mnt/persist/secureboot
+ln -s ../../persist/secureboot /mnt/usr/share/secureboot
+nix-shell -p sbctl --run "sbctl create-keys -d /mnt/usr/share/secureboot"
 
 # generate config
 nixos-generate-config --root /mnt
