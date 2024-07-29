@@ -5,6 +5,34 @@ TGTDEV="/dev/vda"
 LUKSNAME="nixos"
 BTRFS_OPT="rw,noatime,discard=async,compress-force=zstd,space_cache=v2,commit=120"
 
+#functions
+function ask_new_password {
+  prompt="Password:"
+  if [ $# -gt 0 ]
+  then prompt="$1"
+  fi
+  for try in {1..3}; do
+    read -s -p "$prompt" pw1
+    echo >&2
+    if [ $? -ne 0 ] || [ "$pw1" == "" ]
+    then
+      unset pw1
+      continue
+    fi
+    read -s -p "Verify:" pw2
+    echo >&2
+    if [ $? -ne 0 ] || [ "$pw1" != "$pw2" ]
+    then
+      unset pw1 pw2
+      continue
+    fi
+    echo "$pw1"
+    unset pw1 pw2
+    return 0
+  done
+  return 1
+};
+
 # generated
 EFIPARTDEV="${TGTDEV}1"
 LUKSPARTDEV="${TGTDEV}2"
@@ -26,9 +54,11 @@ parted -s $TGTDEV \
 
 # set up efi partition
 mkfs.fat -n EFI -F 32 $EFIPARTDEV
-# set up crypto
-cryptsetup luksFormat --type=luks1 $LUKSPARTDEV
-cryptsetup open $LUKSPARTDEV $LUKSNAME
+# set up luks format (quiet)
+crypto_pw="$(ask_new_password)"
+cryptsetup -q luksFormat --type=luks1 $LUKSPARTDEV <<< "$crypto_pw"
+# todo: generate a keyfile instead
+cryptsetup -q open $LUKSPARTDEV $LUKSNAME <<< "$crypto_pw"
 # set up btrfs
 mkfs.btrfs -f -L NixOS $LUKSMAPPERDEV
 
