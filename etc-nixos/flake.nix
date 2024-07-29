@@ -14,10 +14,10 @@
 
   outputs = { self, nixpkgs, lanzaboote }: {
     nixosConfigurations = {
-      kul2 = nixpkgs.lib.nixosSystem {
+      kul2-secureboot = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./configuration.nix
+          ./machines/kul2-secureboot/configuration.nix
         ];
       };
     };
