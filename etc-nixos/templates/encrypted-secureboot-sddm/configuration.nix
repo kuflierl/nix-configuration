@@ -13,6 +13,7 @@
       ../../modules/desktop/hyprland-riced.nix
       ../../modules/desktop/sddm-xorg-riced.nix
       ../../modules/sound/pipewire.nix
+      ../../modules/misc/flakes-enable.nix
     ];
 
   # Enable CUPS to print documents.
