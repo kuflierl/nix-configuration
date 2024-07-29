@@ -95,7 +95,7 @@ cryptsetup -q luksAddKey $LUKSPARTDEV /mnt/persist/boot/nixos.keyfile.bin <<< "$
 # setup nix
 nixos-generate-config --root /mnt
 fsopts=$(awk -F, '{ for (i=1;i<=NF;i++) printf "\"%s\" ",$i}' <<< "$BTRFS_OPT")
-sed -i -e "s/\"subvol=/$FSOPTS\"subvol=/g" /mnt/etc/nixos/hardware-configuration.nix
+sed -i -e "s/\"subvol=/$fsopts\"subvol=/g" /mnt/etc/nixos/hardware-configuration.nix
 
 cp -r $PROJECT_ROOT/* /mnt/etc/nixos/
 rm -f /mnt/etc/nixos/machines/$CONFIG_NAME/hardware-configuration.nix
