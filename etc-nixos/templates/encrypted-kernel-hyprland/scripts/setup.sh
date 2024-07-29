@@ -98,6 +98,6 @@ fsopts=$(awk -F, '{ for (i=1;i<=NF;i++) printf "\"%s\" ",$i}' <<< "$BTRFS_OPT")
 sed -i -e "s/\"subvol=/$FSOPTS\"subvol=/g" /mnt/etc/nixos/hardware-configuration.nix
 
 cp -r $PROJECT_ROOT/* /mnt/etc/nixos/
-rm /mnt/etc/nixos/machines/$CONFIG_NAME/hardware-configuration.nix
+rm -f /mnt/etc/nixos/machines/$CONFIG_NAME/hardware-configuration.nix
 ln ./machines/$CONFIG_NAME /mnt/etc/nixos/hardware-configuration.nix
 echo "{ config, lib, pkgs, ... }: {imports = [ /mnt/etc/nixos/machines/$CONFIG_NAME ]}" > /mnt/etc/nixos/configuration.nix
