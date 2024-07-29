@@ -4,9 +4,9 @@
   networking.networkmanager = {
     enable = true;
     # stable for a single ssid may be set to "stable" to make this change between boot sessions
-    wifi.macAddress = "stable-ssid"
+    wifi.macAddress = "stable-ssid";
     wifi.scanRandMacAddress = true;
-    ethernet.macAddress = "stable"
+    ethernet.macAddress = "stable";
     enableStrongSwan = true; # iKEw vpns
   };
   
