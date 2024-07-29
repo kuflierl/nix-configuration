@@ -34,6 +34,8 @@ function ask_new_password {
 };
 
 # generated
+PROJECT_ROOT="$(realpath $(dirname $(realpath $0))/../../..)"
+CONFIG_NAME="$(basename $(dirname $(realpath -s $0)))"
 EFIPARTDEV="${TGTDEV}1"
 LUKSPARTDEV="${TGTDEV}2"
 LUKSMAPPERDEV="/dev/mapper/$LUKSNAME"
@@ -95,4 +97,7 @@ nixos-generate-config --root /mnt
 fsopts=$(awk -F, '{ for (i=1;i<=NF;i++) printf "\"%s\" ",$i}' <<< "$BTRFS_OPT")
 sed -i -e "s/\"subvol=/$FSOPTS\"subvol=/g" /mnt/etc/nixos/hardware-configuration.nix
 
-cp -r config/* /mnt/etc/nixos/
+cp -r $PROJECT_ROOT/* /mnt/etc/nixos/
+rm /mnt/etc/nixos/machines/$CONFIG_NAME/hardware-configuration.nix
+ln ./machines/$CONFIG_NAME /mnt/etc/nixos/hardware-configuration.nix
+echo "{ config, lib, pkgs, ... }: {imports = [ /mnt/etc/nixos/machines/$CONFIG_NAME ]}" > /mnt/etc/nixos/configuration.nix

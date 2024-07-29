@@ -9,9 +9,9 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../templates/encrypted-kernel-hyprland/configuration.nix
-    ];  
+    ];
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "kul2"; # Define your hostname.
 
   time.timeZone = "Europe/Berlin";
 
@@ -23,10 +23,6 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   };
   services.xserver.xkb.layout = "de";
-  
- 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.users.alice = {
@@ -38,4 +34,3 @@
   #   ];
   # };
 }
-
