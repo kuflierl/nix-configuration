@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 # config
-TGTDEV="/dev/vda"
+TGTDEV="/dev/sda"
 LUKSNAME="nixos"
 BTRFS_OPT="rw,noatime,discard=async,compress-force=zstd,space_cache=v2,commit=120"
 
