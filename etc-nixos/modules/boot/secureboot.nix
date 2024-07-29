@@ -1,8 +1,4 @@
-{ config, lib, ... }:
-let
-  sources = import ./nix/sources.nix;
-  lanzaboote = import sources.lanzaboote;
-in
+{ config, lib, lanzaboote, ... }:
 {
   imports = [ lanzaboote.nixosModules.lanzaboote ];
 
