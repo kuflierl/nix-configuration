@@ -10,15 +10,19 @@
       ./hardware-configuration.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
+  # Use the GRUB bootloader
+  # see https://elvishjerricco.github.io/2018/12/06/encrypted-boot-on-zfs-with-nixos.html
   boot.loader = {
     grub = {
+    # Disable Legacy boot
       device = "nodev";
       efiSupport = true;
+    # Include the cryptographic keys for dm-crypt in the initrd to mitigate
+    # having to reenter the password
       #extraInitrd = "/boot/initrd.keys.gz";
       enableCryptodisk = true;   
     };
-    #systemd-boot.enable = true;
+    # seperate efi mountpoint from kernel and initrd storage
     efi.efiSysMountPoint = "/efi";
     efi.canTouchEfiVariables = true;
   };
@@ -27,7 +31,7 @@
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
