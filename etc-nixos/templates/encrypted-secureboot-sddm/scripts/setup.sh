@@ -101,5 +101,4 @@ sed -i -e "s/\"subvol=/$fsopts\"subvol=/g" /mnt/etc/nixos/hardware-configuration
 cp -r $PROJECT_ROOT/* /mnt/etc/nixos/
 rm -f /mnt/etc/nixos/machines/$CONFIG_NAME/hardware-configuration.nix
 ln /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/machines/$CONFIG_NAME/hardware-configuration.nix
-ln /mnt/etc/nixos/machines/$CONFIG_NAME/flake.nix /mnt/etc/nixos/flake.nix
 echo "{ config, lib, pkgs, ... }: {imports = [ /mnt/etc/nixos/machines/$CONFIG_NAME/configuration.nix ];}" > /mnt/etc/nixos/configuration.nix
