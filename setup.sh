@@ -13,12 +13,15 @@ LUKSMAPPERDEV="/dev/mapper/$LUKSNAME"
 
 wipefs -a $TGTDEV
 
-# create partition table
+# 1. create a new gpt partition table
+# 2. create the EFI partition
+# 3. set partition flag esp to true (EFI boot)
+# 4. fill the rest of the disk with btrfs
 parted -s $TGTDEV \
-  mklabel gpt # create a new gpt partition table
-  mkpart EFI fat32 1MB 512MB # create the EFI partition
-  set 1 esp on # set partition flag esp to true (EFI boot)
-  mkpart root 512MB 100% # fill the rest of the disk with btrfs
+  mklabel gpt \
+  mkpart EFI fat32 1MB 512MB \
+  set 1 esp on \
+  mkpart root 512MB 100% \
   print
 
 # set up efi partition
@@ -56,4 +59,4 @@ nixos-generate-config --root /mnt
 fsopts=$(awk -F, '{ for (i=1;i<=NF;i++) printf "\"%s\" ",$i}' <<< "$BTRFS_OPT")
 sed -i -e "s/\"subvol=/$FSOPTS\"subvol=/g" /mnt/etc/nixos/hardware-configuration.nix
 
-cp config/* /mnt/etc/nixos/
+cp -r config/* /mnt/etc/nixos/
