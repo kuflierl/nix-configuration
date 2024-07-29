@@ -12,7 +12,7 @@
     };
   };
 
-  outputs = { self, nixpkgs }: {
+  outputs = { self, nixpkgs, lanzaboote }: {
     nixosConfigurations = {
       kul2 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
