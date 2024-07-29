@@ -3,5 +3,5 @@ set -e
 # config
 LUKSNAME="nixos"
 
-umount /mnt
+umount -R /mnt
 cryptsetup close $LUKSNAME
