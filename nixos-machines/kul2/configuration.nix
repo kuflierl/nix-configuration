@@ -8,7 +8,7 @@
   imports =
     [
       (modulesPath + "/installer/scan/not-detected.nix")
-      ../../disko/luks-btrfs-subvolumes.nix
+      ../../nixos-disko/luks-btrfs-subvolumes.nix
       ../../nixos-templates/encrypted-secureboot-sddm/configuration.nix
     ];
 
