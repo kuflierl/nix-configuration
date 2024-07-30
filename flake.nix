@@ -22,7 +22,7 @@
         modules = [
           disko.nixosModules.disko
           lanzaboote.nixosModules.lanzaboote
-          ./machines/kul2/configuration.nix
+          ./nixos-machines/kul2/configuration.nix
         ];
       };
     };

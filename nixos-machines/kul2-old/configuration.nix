@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../templates/encrypted-kernel-hyprland/configuration.nix
+      ../../nixos-templates/encrypted-kernel-hyprland/configuration.nix
     ];
 
   networking.hostName = "kul2"; # Define your hostname.

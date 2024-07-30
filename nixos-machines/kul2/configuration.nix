@@ -9,7 +9,7 @@
     [
       (modulesPath + "/installer/scan/not-detected.nix")
       ../../disko/luks-btrfs-subvolumes.nix
-      ../../templates/encrypted-secureboot-sddm/configuration.nix
+      ../../nixos-templates/encrypted-secureboot-sddm/configuration.nix
     ];
 
   networking.hostName = "kul2"; # Define your hostname.
