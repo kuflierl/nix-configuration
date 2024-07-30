@@ -6,9 +6,10 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../templates/encrypted-kernel-hyprland/configuration.nix
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
+      ../../disko/luks-btrfs-subvolumes.nix
+      ../../templates/encrypted-secureboot-sddm/configuration.nix
     ];
 
   networking.hostName = "kul2"; # Define your hostname.
