@@ -28,6 +28,7 @@
           luks = {
             size = "100%";
             content = {
+              name = "nixos"
               type = "luks";
               settings = {
                 allowDiscards = true;
