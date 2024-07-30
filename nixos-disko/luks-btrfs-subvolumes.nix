@@ -50,11 +50,11 @@
                     mountOptions = [ "compress=zstd" "noatime" "discard=async" "exec" ];
                   };
                   "/log" = {
-                    mountpoint = "/var/log"
+                    mountpoint = "/var/log";
                     mountOptions = [ "compress=zstd" "noatime" "discard=async" "noexec" ];
                   };
                   "/persist" = {
-                    mountpoint = "/persist"
+                    mountpoint = "/persist";
                     mountOptions = [ "compress=zstd" "noatime" "discard=async" "noexec" ];
                   };
                   "/swap" = {
