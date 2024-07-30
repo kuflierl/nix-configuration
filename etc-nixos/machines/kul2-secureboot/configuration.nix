@@ -6,8 +6,9 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
+      ../../disko/luks-btrfs-subvolumes.nix
       ../../templates/encrypted-secureboot-sddm/configuration.nix
     ];
 
