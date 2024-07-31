@@ -14,5 +14,6 @@
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/persist/secureboot";
+    generateKeysIfNotExist = true;
   };
 }
