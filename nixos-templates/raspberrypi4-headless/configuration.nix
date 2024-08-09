@@ -6,7 +6,7 @@ in {
   services.openssh.enable = lib.mkDefault true;
 
   i18n = {
-    defaultLocale = en_US.UTF-8;
+    defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
       LC_ADDRESS = extraLocale;
       LC_IDENTIFICATION = extraLocale;
