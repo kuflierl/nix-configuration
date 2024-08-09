@@ -3,6 +3,9 @@
 let
   extraLocale = "de_DE.UTF-8";
 in {
+  imports = [
+    ./hardware-configuration.nix
+  ];
   services.openssh.enable = lib.mkDefault true;
 
   i18n = {
