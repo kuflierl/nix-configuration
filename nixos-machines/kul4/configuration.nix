@@ -4,6 +4,7 @@
   imports = [
     ../../nixos-templates/raspberrypi4-headless/configuration.nix
     ../../nixos-modules/misc/ios-device-core.nix
+    ../../nixos-modules/network/networkmanager-laptop.nix
   ];
 
   networking.hostName = "kul4";
