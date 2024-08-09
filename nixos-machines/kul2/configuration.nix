@@ -14,7 +14,9 @@
 
   networking.hostName = "kul2"; # Define your hostname.
 
-  time.timeZone = "Europe/Berlin";
+  # automatic timezone setting
+  time.timeZone = lib.mkDefault "Europe/Berlin";
+  services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
