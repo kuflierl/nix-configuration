@@ -5,6 +5,7 @@ let
 in {
   imports = [
     ./hardware-configuration.nix
+    ../../nixos-modules/misc/flakes-enable.nix
   ];
   services.openssh.enable = lib.mkDefault true;
 
