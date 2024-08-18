@@ -25,7 +25,7 @@
     "20-eth0" = {
       matchConfig.Name = "end0";
       networkConfig.DHCP = true;
-    }
+    };
     "10-lan" = {
       matchConfig.Name = "lan";
       networkConfig.DHCP = true;
