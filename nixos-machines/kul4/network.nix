@@ -4,14 +4,20 @@
     useNetworkd = true;
     useDHCP = false;
   };
-  # enable systemd networkd for static interfaces
-  systemd.network.enable = true;
-  systemd.network.networks = {
-    "81-iphone-hotspot" = {
+  # set custom interface names
+  systemd.network.links = {
+    "80-iphone-hotspot" = {
       # the following line checks if the driver is ipeth
       # ipeth is the kernel driver for ios tethering
       matchConfig.Driver = "ipheth";
       linkConfig.Name = "iphone";
+    };
+  };
+  # enable systemd networkd for static interfaces
+  systemd.network.enable = true;
+  systemd.network.networks = {
+    "81-iphone-hotspot" = {
+      matchConfig.Name = "iphone";
       networkConfig.DHCP = "ipv4";
       # accept Router Advertisements for Stateless IPv6 Autoconfiguraton (SLAAC)
       networkConfig.IPv6AcceptRA = true;
