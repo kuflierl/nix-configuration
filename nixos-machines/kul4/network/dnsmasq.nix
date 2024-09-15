@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }:
 {
+  services.resolved.enable = false;
   services.dnsmasq = {
     enable = true;
     settings = {
