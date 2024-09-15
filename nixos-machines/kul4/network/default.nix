@@ -77,7 +77,7 @@
     };
     "30-br-lan" = {
       matchConfig.Name = "br-lan";
-      networkConfig.DHCP = true;
+      networkConfig.DHCP = false;
       bridgeConfig = { };
       address = [
         "192.168.10.1/24"
