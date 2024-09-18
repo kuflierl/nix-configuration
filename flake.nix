@@ -14,9 +14,13 @@
       url = "github:nix-community/disko/v1.6.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix =  {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, lanzaboote, disko, nixos-hardware }@inputs: {
+  outputs = { self, nixpkgs, sops-nix, lanzaboote, disko, nixos-hardware }@inputs: {
     nixosConfigurations = {
       kul2 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -29,6 +33,7 @@
       kul4 = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
+          sops-nix.nixosModules.sops
           nixos-hardware.nixosModules.raspberry-pi-4
           ./nixos-machines/kul4/configuration.nix
         ];
