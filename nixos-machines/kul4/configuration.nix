@@ -6,6 +6,7 @@
     ../../nixos-modules/misc/ios-device-core.nix
     ../../nixos-modules/misc/usbmuxd2.nix
     ./network.nix
+    ./sops.nix
   ];
 
   networking.hostName = "kul4";
