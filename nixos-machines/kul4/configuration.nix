@@ -5,6 +5,7 @@
     ../../nixos-templates/raspberrypi4-headless/configuration.nix
     ../../nixos-modules/misc/ios-device-core.nix
     ../../nixos-modules/misc/usbmuxd2.nix
+    ../../nixos-modules/hardware/rtl88x2bu.nix
     ./network.nix
     ./sops.nix
   ];
