@@ -6,7 +6,7 @@
     ../../nixos-modules/misc/ios-device-core.nix
     ../../nixos-modules/misc/usbmuxd2.nix
     ../../nixos-modules/hardware/rtl88x2bu.nix
-    ./network.nix
+    ./network/default.nix
     ./sops.nix
   ];
 
