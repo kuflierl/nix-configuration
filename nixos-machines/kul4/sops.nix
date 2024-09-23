@@ -4,5 +4,6 @@
   sops.defaultSopsFile = ../../secrets/kul4/default.yaml;
   sops.defaultSopsFormat = "yaml";
   # secrets go here
-  sops.secrets."wifi/main_passwd" = {};
+  sops.secrets."wifi/main_passwd" = {}; # for wifi AP
+  secrets."wifi_env" = {}; # for wifi client
 }

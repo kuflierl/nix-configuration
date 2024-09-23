@@ -18,23 +18,23 @@
             type filter hook input priority 0; policy drop;
 
             iifname { "br-lan" } accept comment "Allow local network to access the router"
-            iifname "iphone" ct state { established, related } accept comment "Allow established traffic"
-            iifname "iphone" icmp type { echo-request, destination-unreachable, time-exceeded } counter accept comment "Allow select ICMP"
-            iifname "iphone" counter drop comment "Drop all other unsolicited traffic from wan"
+            iifname { "iphone", "wlan0" } ct state { established, related } accept comment "Allow established traffic"
+            iifname { "iphone", "wlan0" } icmp type { echo-request, destination-unreachable, time-exceeded } counter accept comment "Allow select ICMP"
+            iifname { "iphone", "wlan0" } counter drop comment "Drop all other unsolicited traffic from wan"
             iifname "lo" accept comment "Accept everything from loopback interface"
           }
           chain forward {
             type filter hook forward priority filter; policy drop;
 
-            iifname { "br-lan" } oifname { "iphone" } accept comment "Allow trusted LAN to WAN"
-            iifname { "iphone" } oifname { "br-lan" } ct state { established, related } accept comment "Allow established back to LANs"
+            iifname { "br-lan" } oifname { "iphone", "wlan0" } accept comment "Allow trusted LAN to WAN"
+            iifname { "iphone", "wlan0" } oifname { "br-lan" } ct state { established, related } accept comment "Allow established back to LANs"
           }
         }
 
         table ip nat {
           chain postrouting {
             type nat hook postrouting priority 100; policy accept;
-            oifname "iphone" masquerade
+            oifname { "iphone", "wlan0" } masquerade
           }
         }
       '';
@@ -74,6 +74,7 @@
       networkConfig.IPv6PrivacyExtensions = false;
       networkConfig.IPForward = true;
       linkConfig.RequiredForOnline = false;
+      dhcpV4Config.RouteMetric = 400;
     };
     "30-br-lan" = {
       matchConfig.Name = "br-lan";
@@ -85,6 +86,13 @@
       networkConfig = {
         ConfigureWithoutCarrier = true;
       };
+    };
+    "40-wlan0" = {
+      matchConfig.Name = "wlan0";
+      networkConfig.DHCP = true;
+      networkConfig.IPv6AcceptRA = true;
+      linkConfig.RequiredForOnline = false;
+      dhcpV4Config.RouteMetric = 600;
     };
   };
 }
