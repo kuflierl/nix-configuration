@@ -22,7 +22,7 @@
 
   nix.settings.allowed-users = [
     "@wheel"
-    mflierl
+    "mflierl"
   ];
 
   users = {
