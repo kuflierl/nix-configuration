@@ -21,6 +21,7 @@
             type filter hook input priority 0; policy drop;
 
             iifname { "br-lan" } accept comment "Allow local network to access the router"
+            iifname { "wlan0" } tcp dport { ssh } accept comment "enable specific services from wlan"
             iifname { "iphone", "wlan0" } ct state { established, related } accept comment "Allow established traffic"
             iifname { "iphone", "wlan0" } icmp type { echo-request, destination-unreachable, time-exceeded } counter accept comment "Allow select ICMP"
             iifname { "iphone", "wlan0" } counter drop comment "Drop all other unsolicited traffic from wan"
