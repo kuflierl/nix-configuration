@@ -3,7 +3,7 @@
   sops.secrets."users/kuflierl/unix_hash" = {
     format = "yaml";
     key = "unix_hash";
-    sopsFile = ../../secrets/users/kuflierl.yaml;
+    sopsFile = ../../../secrets/users/kuflierl.yaml;
     neededForUsers = true;
   };
   users.users."kuflierl" = {

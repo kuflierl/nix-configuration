@@ -3,7 +3,7 @@
   sops.secrets."users/mflierl/unix_hash" = {
     format = "yaml";
     key = "unix_hash";
-    sopsFile = ../../secrets/users/mflierl.yaml;
+    sopsFile = ../../../secrets/users/mflierl.yaml;
     neededForUsers = true;
   };
   users.users."mflierl" = {
