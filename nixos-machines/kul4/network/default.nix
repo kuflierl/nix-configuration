@@ -95,6 +95,7 @@
       networkConfig.DHCP = true;
       networkConfig.IPv6AcceptRA = true;
       linkConfig.RequiredForOnline = false;
+      networkConfig.IPForward = true;
       dhcpV4Config.RouteMetric = 600;
     };
   };
