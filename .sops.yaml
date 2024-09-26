@@ -15,3 +15,8 @@ creation_rules:
     - age:
       - *admin_kuflierl
       - *server_kul4
+  - path_regex: secrets/users/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *admin_kuflierl
+      - *server_kul4
