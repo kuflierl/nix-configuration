@@ -5,7 +5,7 @@
     interfaces = [
       "wlan0"
     ];
-    environmentFile = "/run/secrets/wifi_env";
+    environmentFile = config.sops.templates."wifi_env".path;
     networks = {
       "@HOME1_SSID@" = {
         psk = "@HOME1_PSK@";

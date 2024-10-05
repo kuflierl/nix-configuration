@@ -33,6 +33,7 @@
       };
       kul4 = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
+        specialArgs = {inherit self;};
         modules = [
           sops-nix.nixosModules.sops
           nixos-hardware.nixosModules.raspberry-pi-4
