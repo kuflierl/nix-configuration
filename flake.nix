@@ -48,8 +48,9 @@
         modules = [
           disko.nixosModules.disko
           impermanence.nixosModules.impermanence
-          (import ./nixos-disko/kul6.nix { device  = "/dev/nvme0n1"; })
+          sops-nix.nixosModules.sops
           lanzaboote.nixosModules.lanzaboote
+          (import ./nixos-disko/kul6.nix { device  = "/dev/nvme0n1"; })
           ./nixos-machines/kul6/configuration.nix
         ];
       };
