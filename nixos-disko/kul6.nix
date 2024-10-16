@@ -2,7 +2,7 @@
 {
   disko.devices = {
     disk.primary = {
-      inherit device;;
+      inherit device;
       type = "disk";
       content = {
         type = "gpt";
