@@ -14,6 +14,8 @@
 
   networking.hostName = "kul2"; # Define your hostname.
 
+  boot.lanzaboote.pkiBundle = "/persist/secureboot";
+
   # automatic timezone setting
   time.timeZone = lib.mkDefault "Europe/Berlin";
   services.automatic-timezoned.enable = true;

@@ -11,7 +11,7 @@
     wifi.macAddress = "stable-ssid";
     wifi.scanRandMacAddress = true;
     ethernet.macAddress = "stable";
-    enableStrongSwan = true; # iKEw vpns
+    # enableStrongSwan = true; # iKEw vpns
   };
 
   # Configure network proxy if necessary

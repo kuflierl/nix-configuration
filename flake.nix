@@ -5,7 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.1";
+      url = "github:kuflierl/lanzaboote";
       # Optional but recommended to limit the size of your system closure.
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -18,6 +18,9 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
+    impermanence = {
+      url = "github:nix-community/impermanence";
     };
   };
 
@@ -38,6 +41,16 @@
           sops-nix.nixosModules.sops
           nixos-hardware.nixosModules.raspberry-pi-4
           ./nixos-machines/kul4/configuration.nix
+        ];
+      };
+      kul6 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          inputs.impermanence.nixosModules.impermanence
+          (import ./nixos-disko/kul6.nix { device  = "/dev/nvme0n1" })
+          lanzaboote.nixosModules.lanzaboote
+          ./nixos-machines/kul6/configuration.nix
         ];
       };
     };
