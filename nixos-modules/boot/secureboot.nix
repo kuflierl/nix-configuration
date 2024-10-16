@@ -13,6 +13,6 @@
 
   boot.lanzaboote = {
     enable = true;
-    # pkiBundle = "/persist/secureboot";
+    pkiBundle = lib.mkDefault "/etc/secureboot";
   };
 }
