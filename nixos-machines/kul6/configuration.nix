@@ -12,6 +12,7 @@
       # system config
       ./impermanence.nix
       ./hardware-configuration.nix
+      ./sops.nix
       # users
       ../../nixos-modules/users/kuflierl/default.nix
   ];
