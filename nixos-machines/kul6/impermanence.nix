@@ -34,7 +34,7 @@
       script = let
         btrfs_root_subvol = "@root";
         btrfs_old_roots_name = "old_roots";
-        root_vol_time_keep = 30;
+        root_vol_time_keep = "30";
         mnt_tmp_dir = "/btrfs_tmp";
         mnt_dev = "/dev/mapper/nixos";
       in ''
