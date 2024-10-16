@@ -24,7 +24,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, sops-nix, lanzaboote, disko, nixos-hardware }@inputs: {
+  outputs = { self, nixpkgs, sops-nix, lanzaboote, disko, nixos-hardware, impermanence }@inputs: {
     nixosConfigurations = {
       kul2 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -47,7 +47,7 @@
         system = "x86_64-linux";
         modules = [
           disko.nixosModules.disko
-          inputs.impermanence.nixosModules.impermanence
+          impermanence.nixosModules.impermanence
           (import ./nixos-disko/kul6.nix { device  = "/dev/nvme0n1"; })
           lanzaboote.nixosModules.lanzaboote
           ./nixos-machines/kul6/configuration.nix
