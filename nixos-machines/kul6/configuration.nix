@@ -16,6 +16,9 @@
       # users
       ../../nixos-modules/users/kuflierl/default.nix
   ];
+
+  boot.lanzaboote.generateKeysIfNotExist = true;
+
   networking.hostName = "kul6";
 
   # Enable CUPS to print documents.
