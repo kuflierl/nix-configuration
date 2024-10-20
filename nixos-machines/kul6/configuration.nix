@@ -23,7 +23,7 @@
 
   # keyboard layout
   console.keyMap = "de";
-  services.xserver.layout = "de";
+  services.xserver.xkb.layout = "de";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
