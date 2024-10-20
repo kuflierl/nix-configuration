@@ -21,6 +21,10 @@
 
   networking.hostName = "kul6";
 
+  # keyboard layout
+  console.keyMap = "de";
+  services.xserver.layout = "de";
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
