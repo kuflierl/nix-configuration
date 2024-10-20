@@ -9,7 +9,7 @@
       # Optional but recommended to limit the size of your system closure.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware.url = "github:kuflierl/nixos-hardware";
     disko = {
       url = "github:nix-community/disko/v1.6.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,6 +50,7 @@
           impermanence.nixosModules.impermanence
           sops-nix.nixosModules.sops
           lanzaboote.nixosModules.lanzaboote
+          nixos-hardware.nixosModules.dell-xps-15-9530
           (import ./nixos-disko/kul6.nix { device  = "/dev/nvme0n1"; })
           ./nixos-machines/kul6/configuration.nix
         ];
