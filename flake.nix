@@ -2,7 +2,7 @@
   description = "kuflierl's main nix configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     lanzaboote = {
       url = "github:kuflierl/lanzaboote";
@@ -11,7 +11,7 @@
     };
     nixos-hardware.url = "github:kuflierl/nixos-hardware";
     disko = {
-      url = "github:nix-community/disko/v1.6.1";
+      url = "github:nix-community/disko/v1.11.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix =  {
@@ -51,7 +51,27 @@
           sops-nix.nixosModules.sops
           lanzaboote.nixosModules.lanzaboote
           nixos-hardware.nixosModules.dell-xps-15-9530
-          (import ./nixos-disko/kul6.nix { device  = "/dev/nvme0n1"; })
+          (import ./nixos-disko/kul6.nix {
+            inherit lib pkgs;
+            device  = "/dev/nvme0n1";
+            swapsize = "64G";
+          })
+          ./nixos-machines/kul6/configuration.nix
+        ];
+      };
+      kul6l = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          impermanence.nixosModules.impermanence
+          sops-nix.nixosModules.sops
+          lanzaboote.nixosModules.lanzaboote
+          nixos-hardware.nixosModules.dell-xps-15-9530
+          (import ./nixos-disko/kul6.nix {
+            inherit lib pkgs;
+            device  = "/dev/nvme1n1";
+            swapsize = "48G";
+          })
           ./nixos-machines/kul6/configuration.nix
         ];
       };
