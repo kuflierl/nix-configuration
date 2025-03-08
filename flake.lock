@@ -137,15 +137,16 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1729456752,
-        "narHash": "sha256-ej+ybEITzBSVUvI4wdZcbJD6PIwldiKjAHCTJQs7jW8=",
+        "lastModified": 1729460437,
+        "narHash": "sha256-mC49HXN8CRjtcMEOJeLHqsUPda7gpIl8mGrZWRKYDCk=",
         "owner": "kuflierl",
         "repo": "nixos-hardware",
-        "rev": "7cca65f0b2d97b19125182388bd451c587a75df8",
+        "rev": "70245468183501caf7238bc31b3e43f067872733",
         "type": "github"
       },
       "original": {
         "owner": "kuflierl",
+        "ref": "dell-xps-15-9530-nofingerprint",
         "repo": "nixos-hardware",
         "type": "github"
       }
