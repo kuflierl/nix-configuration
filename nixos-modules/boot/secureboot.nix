@@ -13,6 +13,6 @@
 
   boot.lanzaboote = {
     enable = true;
-    pkiBundle = lib.mkDefault "/etc/secureboot";
+    pkiBundle = lib.mkDefault "/var/lib/sbctl";
   };
 }

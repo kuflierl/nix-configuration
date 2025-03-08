@@ -7,7 +7,7 @@
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
-      "/etc/secureboot"
+      "/var/lib/sbctl"
     ];
     files = [
       "/etc/ssh/ssh_host_ed25519_key"
