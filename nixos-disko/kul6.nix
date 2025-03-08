@@ -37,7 +37,7 @@
               content = {
                 type = "btrfs";
                 extraArgs = [ "-f" ];
-                postMountHook = "chattr +C /mnt/var/lib/libvirt";
+                preUnmountHook = "chattr +C /mnt/@var-lib-libvirt";
                 subvolumes = {
                   "@root" = {
                     mountpoint = "/";
