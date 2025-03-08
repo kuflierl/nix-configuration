@@ -8,7 +8,8 @@
       ../../nixos-modules/misc/flakes-enable.nix
       ../../nixos-modules/boot/secureboot.nix
       ../../nixos-modules/network/networkmanager-laptop.nix
-      # ../../nixos-modules/sound/pipewire.nix
+      ../../nixos-modules/sound/pipewire.nix
+      ../../nixos-modules/desktop/kde-plasma-6.nix
       # system config
       ./impermanence.nix
       ./hardware-configuration.nix
