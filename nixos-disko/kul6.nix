@@ -37,6 +37,7 @@
               content = {
                 type = "btrfs";
                 extraArgs = [ "-f" ];
+                postMountHook = "chattr +C /mnt/var/lib/libvirt";
                 subvolumes = {
                   "@root" = {
                     mountpoint = "/";
@@ -66,7 +67,6 @@
                   "@var-lib-libvirt" = {
                     mountpoint = "/var/lib/libvirt";
                     mountOptions = [ "noatime" "discard=async" "noexec" ];
-                    postMountHook = "chattr +C /mnt/var/lib/libvirt";
                   };
                   "@nixbldtmp" = {
                     mountpoint = "/var/nixbldtmp";
