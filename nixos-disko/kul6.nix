@@ -1,4 +1,4 @@
-{ lib, pkgs, device ? throw "Set this to your disk device, e.g. /dev/sda", swapsize ? throw "Set this to your swapsize, recomended size is your ram size", ... }:
+{ device ? throw "Set this to your disk device, e.g. /dev/sda", swapsize ? throw "Set this to your swapsize, recomended size is your ram size", ... }:
 {
   disko.devices = {
     disk.primary = {
@@ -66,7 +66,7 @@
                   "@var-lib-libvirt" = {
                     mountpoint = "/var/lib/libvirt";
                     mountOptions = [ "noatime" "discard=async" "noexec" ];
-                    postMountHook = "${lib.getExe' pkgs.e2fsprogs chattr} +C /mnt/var/lib/libvirt";
+                    postMountHook = "chattr +C /mnt/var/lib/libvirt";
                   };
                   "@nixbldtmp" = {
                     mountpoint = "/var/nixbldtmp";

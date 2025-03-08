@@ -52,7 +52,6 @@
           lanzaboote.nixosModules.lanzaboote
           nixos-hardware.nixosModules.dell-xps-15-9530
           (import ./nixos-disko/kul6.nix {
-            inherit lib pkgs;
             device  = "/dev/nvme0n1";
             swapsize = "64G";
           })
@@ -68,7 +67,6 @@
           lanzaboote.nixosModules.lanzaboote
           nixos-hardware.nixosModules.dell-xps-15-9530
           (import ./nixos-disko/kul6.nix {
-            inherit lib pkgs;
             device  = "/dev/nvme1n1";
             swapsize = "48G";
           })
