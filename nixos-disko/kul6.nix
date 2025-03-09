@@ -61,7 +61,7 @@
                   };
                   "@swap" = {
                     mountpoint = "/.swapvol";
-                    swap.swapfile.size = "64G";
+                    swap.swapfile.size = swapsize;
                     mountOptions = [ "noatime" "discard=async" "noexec" ];
                   };
                   "@var-lib-libvirt" = {
