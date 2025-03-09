@@ -5,6 +5,6 @@
   nix.settings.build-dir = "/var/nixbldtmp";
 
   hardware.bluetooth.enable = true;
-  hardware.cpu.intel.updateMicrocode = true;
+  hardware.enableRedistributableFirmware = true;
   hardware.graphics.enable = true;
 }
