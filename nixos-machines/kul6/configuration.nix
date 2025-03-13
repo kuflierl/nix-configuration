@@ -22,6 +22,8 @@
 
   networking.hostName = "kul6";
 
+  time.timeZone = "Europe/Berlin";
+
   # keyboard layout
   console.keyMap = "de";
   services.xserver.xkb.layout = "de";
