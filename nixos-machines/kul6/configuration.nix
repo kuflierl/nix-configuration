@@ -15,6 +15,7 @@
       ./hardware-configuration.nix
       ./sops.nix
       ./services.nix
+      ./boot.nix
       # users
       ../../nixos-modules/users/kuflierl/default.nix
   ];
