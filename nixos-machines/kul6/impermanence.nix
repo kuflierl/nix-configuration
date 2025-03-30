@@ -3,11 +3,14 @@
   environment.persistence."/persist/system" = {
     hideMounts = true;
     directories = [
-      "/var/lib/bluetooth"
-      "/var/lib/nixos"
+      "/var/lib/bluetooth" # bluetooth settings
+      "/var/lib/nixos" # persistent user uid mappings
+      "/var/lib/upower" # battery power statistics
+      "/var/lib/sbctl" # secureboot keys
+      "/var/lib/NetworkManager" # network manager leases, keys, etc
       "/var/lib/systemd/coredump"
-      "/etc/NetworkManager/system-connections"
-      "/var/lib/sbctl"
+      "/var/db/sudo/lectured" # sudo lectures
+      "/etc/NetworkManager/system-connections" # system connections network manager
     ];
     files = [
       "/etc/ssh/ssh_host_ed25519_key"
@@ -15,6 +18,7 @@
       "/etc/ssh/ssh_host_rsa_key"
       "/etc/ssh/ssh_host_rsa_key.pub"
       "/etc/machine-id"
+      "/var/lib/logrotate.status"
       { file = "/var/keys/secret_file"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
     ];
   };
