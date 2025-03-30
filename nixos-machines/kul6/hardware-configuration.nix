@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ ... }:
 {
   imports = [
     ../../nixos-modules/hardware/Intel-Arc-A370M-autopwrmgnt.nix
