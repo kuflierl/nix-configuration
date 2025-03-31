@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 # a slightly hardened network manager configuration that randomizes mac addresses
 # on a ssid basis by default (IOS behavior)

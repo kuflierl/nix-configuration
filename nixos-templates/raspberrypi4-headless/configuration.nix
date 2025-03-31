@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ lib, ... }:
 
 let
   extraLocale = "de_DE.UTF-8";

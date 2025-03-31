@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, ... }:
 {
   sops.secrets."users/kuflierl/unix_hash" = {
     format = "yaml";
