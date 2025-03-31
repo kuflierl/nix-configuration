@@ -36,7 +36,7 @@
   users = {
     mutableUsers = false;
     users."kuflierl" = {
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel" "libvirtd" ];
     };
   };
 
