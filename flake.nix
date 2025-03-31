@@ -9,7 +9,7 @@
       # Optional but recommended to limit the size of your system closure.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:kuflierl/nixos-hardware/dell-xps-15-9530-nofingerprint";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
     disko = {
       url = "github:nix-community/disko/v1.11.0";
       inputs.nixpkgs.follows = "nixpkgs";
