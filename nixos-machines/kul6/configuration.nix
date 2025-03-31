@@ -6,7 +6,6 @@
 {
   imports = [
       ../../nixos-modules/misc/flakes-enable.nix
-      ../../nixos-modules/boot/secureboot.nix
       ../../nixos-modules/sound/pipewire.nix
       ../../nixos-modules/desktop/kde-plasma-6.nix
       # system config
@@ -19,8 +18,6 @@
       # users
       ../../nixos-modules/users/kuflierl/default.nix
   ];
-
-  boot.lanzaboote.generateKeysIfNotExist = true;
 
   networking.hostName = "kul6";
 

@@ -1,7 +1,11 @@
 { ... }:
 {
-  # playmouth
+  imports = [
+    ../../nixos-modules/boot/secureboot.nix
+  ];
+
   boot = {
+    lanzaboote.generateKeysIfNotExist = true;
 
     plymouth = {
       enable = true;
