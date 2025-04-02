@@ -5,8 +5,7 @@
 keys:
   - &admin_kuflierl age1cxaad6a86wag6s82tu0ugm4jnymrnhj38qg0n0j6v4y3hzsfqcdq7pgu9k
   - &server_kul4 age1napmf7e5tvhjclq4t8cf4z3y2j6l8meg3eld0ygwzz9w6tl48d8s3uuztl
-  - &laptop_kul6 age1upup452wn2efl0fhj9eu8zwdarmkte82f2p9j9stcwqwvvc92gnqs45dff
-  - &laptop_kul6l age17qertmvxg8leewcpt49zy6s8xaq7hnt0vv582sd6v3nr684jt3vsl5ptlu
+  - &laptop_kul6 age17qertmvxg8leewcpt49zy6s8xaq7hnt0vv582sd6v3nr684jt3vsl5ptlu
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -23,7 +22,6 @@ creation_rules:
       - *admin_kuflierl
       - *server_kul4
       - *laptop_kul6
-      - *laptop_kul6l
   - path_regex: secrets/wifi/home1\.yaml$
     key_groups:
     - age:
