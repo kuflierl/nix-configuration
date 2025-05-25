@@ -2,7 +2,7 @@
   description = "kuflierl's main nix configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     lanzaboote = {
       url = "github:kuflierl/lanzaboote";
@@ -11,7 +11,7 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     disko = {
-      url = "github:nix-community/disko/v1.11.0";
+      url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix =  {
