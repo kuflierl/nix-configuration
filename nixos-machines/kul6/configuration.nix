@@ -12,7 +12,7 @@
       ./impermanence.nix
       ./hardware-configuration.nix
       ./sops.nix
-      ./services.nix
+      ./misc.nix
       ./boot.nix
       ./networking.nix
       # users
@@ -46,12 +46,6 @@
     kdePackages.kio-fuse
     kdePackages.kio-extras
   ];
-
-  # distrobox support for matlab
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
