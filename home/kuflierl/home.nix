@@ -145,21 +145,6 @@
     neovim = {
       
     };
-  };
-
-  # todo
-  # restic -r sftp:kuflierl@kulnas1.lan:/srv/data/backups/kuflierl/kul6 backup /home/kuflierl --exclude-caches --exclude-file ~/restic-exclude.txt
-  # duplicity restore --path-to-restore home/kuflierl/.ssh sftp://kuflierl@kulnas1//srv/data/backups/kuflierl/kul2 ~/ssh.old
-
-  services = {
-    syncthing = {
-      enable = true;
-      tray.enable = false; # we use the plasmoid instead
-    };
-    kdeconnect.enable = true;
-  };
-
-  programs = {
     git = {
       enable = true;
       userEmail = "41301536+kuflierl@users.noreply.github.com";
@@ -177,9 +162,20 @@
       enable = true;
       gitCredentialHelper.enable = true;
     };
+};
+
+  # todo
+  # restic -r sftp:kuflierl@kulnas1.lan:/srv/data/backups/kuflierl/kul6 backup /home/kuflierl --exclude-caches --exclude-file ~/restic-exclude.txt
+  # duplicity restore --path-to-restore home/kuflierl/.ssh sftp://kuflierl@kulnas1//srv/data/backups/kuflierl/kul2 ~/ssh.old
+
+  services = {
+    syncthing = {
+      enable = true;
+      tray.enable = false; # we use the plasmoid instead
+    };
+    kdeconnect.enable = true;
   };
 
-  
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
