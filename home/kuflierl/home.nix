@@ -27,7 +27,6 @@
     ]);
   in with pkgs; [
     # Esentials
-    git
     htop
     btop
     ncdu
@@ -160,11 +159,27 @@
     kdeconnect.enable = true;
   };
 
-  programs.gh = {
-    enable = true;
-    gitCredentialHelper.enable = true;
+  programs = {
+    git = {
+      enable = true;
+      userEmail = "41301536+kuflierl@users.noreply.github.com";
+      userName = "kuflierl";
+      signing = {
+        format = "openpgp";
+        key = "0B3842DA5392223D";
+        signByDefault = true;
+      };
+      extraConfig = {
+        init.defaultBranch = "main";
+      };
+    };
+    gh = {
+      enable = true;
+      gitCredentialHelper.enable = true;
+    };
   };
 
+  
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
