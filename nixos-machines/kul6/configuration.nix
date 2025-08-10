@@ -51,7 +51,7 @@
   users = {
     mutableUsers = false;
     users."kuflierl" = {
-      extraGroups = [ "wheel" "libvirtd" ];
+      extraGroups = [ "wheel" "libvirtd" "wireshark" ];
     };
   };
 
