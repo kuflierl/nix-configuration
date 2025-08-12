@@ -9,4 +9,6 @@
   hardware.bluetooth.enable = true;
   hardware.enableRedistributableFirmware = true;
   hardware.graphics.enable = true;
+  # enable mode switching for multi certain USB WLAN and WWAN adapters
+  hardware.usb-modeswitch.enable = true;
 }
