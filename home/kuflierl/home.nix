@@ -47,6 +47,8 @@
     kdePackages.kleopatra
     kdePackages.yakuake
     wireshark
+    krename
+    handbrake
     # office
     libreoffice-qt6
     # creative
