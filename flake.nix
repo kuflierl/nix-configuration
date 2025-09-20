@@ -30,7 +30,7 @@
         modules = [
           disko.nixosModules.disko
           lanzaboote.nixosModules.lanzaboote
-          ./nixos-machines/kul2/configuration.nix
+          ./hosts/kul2/configuration.nix
         ];
       };
       kul4 = nixpkgs.lib.nixosSystem {
@@ -39,7 +39,7 @@
         modules = [
           sops-nix.nixosModules.sops
           nixos-hardware.nixosModules.raspberry-pi-4
-          ./nixos-machines/kul4/configuration.nix
+          ./hosts/kul4/configuration.nix
         ];
       };
       kul6 = nixpkgs.lib.nixosSystem {
@@ -55,7 +55,7 @@
             device  = "/dev/nvme0n1";
             swapsize = "64G";
           })
-          ./nixos-machines/kul6/configuration.nix
+          ./hosts/kul6/configuration.nix
         ];
       };
     };
