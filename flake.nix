@@ -58,21 +58,6 @@
           ./nixos-machines/kul6/configuration.nix
         ];
       };
-      kul6l = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          disko.nixosModules.disko
-          impermanence.nixosModules.impermanence
-          sops-nix.nixosModules.sops
-          lanzaboote.nixosModules.lanzaboote
-          nixos-hardware.nixosModules.dell-xps-15-9530
-          (import ./nixos-disko/kul6.nix {
-            device  = "/dev/nvme1n1";
-            swapsize = "48G";
-          })
-          ./nixos-machines/kul6/configuration.nix
-        ];
-      };
     };
   };
 
