@@ -5,7 +5,7 @@
   boot.loader = {
     grub = {
       useOSProber = true;
-    # Disable Legacy boot
+      # Disable Legacy boot
       device = "nodev";
       efiSupport = true;
     };

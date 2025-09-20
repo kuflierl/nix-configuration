@@ -1,11 +1,19 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   services.resolved.enable = false;
   services.dnsmasq = {
     enable = true;
     settings = {
       # upstream DNS servers
-      server = [ "9.9.9.9" "1.1.1.1" ];
+      server = [
+        "9.9.9.9"
+        "1.1.1.1"
+      ];
       # sensible behaviours
       domain-needed = true;
       bogus-priv = true;

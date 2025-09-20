@@ -2,7 +2,8 @@
 
 let
   extraLocale = "de_DE.UTF-8";
-in {
+in
+{
   imports = [
     ./hardware-configuration.nix
     ../../nixos-modules/misc/flakes-enable.nix

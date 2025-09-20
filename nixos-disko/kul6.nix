@@ -1,4 +1,8 @@
-{ device ? throw "Set this to your disk device, e.g. /dev/sda", swapsize ? throw "Set this to your swapsize, recomended size is your ram size", ... }:
+{
+  device ? throw "Set this to your disk device, e.g. /dev/sda",
+  swapsize ? throw "Set this to your swapsize, recomended size is your ram size",
+  ...
+}:
 {
   disko.devices = {
     disk.primary = {
@@ -41,36 +45,74 @@
                 subvolumes = {
                   "@root" = {
                     mountpoint = "/";
-                    mountOptions = [ "compress=zstd" "noatime" "discard=async" "noexec" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                      "discard=async"
+                      "noexec"
+                    ];
                   };
                   "@home" = {
                     mountpoint = "/home";
-                    mountOptions = [ "compress=zstd" "noatime" "discard=async" "nosuid" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                      "discard=async"
+                      "nosuid"
+                    ];
                   };
                   "@nix" = {
                     mountpoint = "/nix";
-                    mountOptions = [ "compress=zstd" "noatime" "discard=async" "exec" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                      "discard=async"
+                      "exec"
+                    ];
                   };
                   "@log" = {
                     mountpoint = "/var/log";
-                    mountOptions = [ "compress=zstd" "noatime" "discard=async" "noexec" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                      "discard=async"
+                      "noexec"
+                    ];
                   };
                   "@persist" = {
                     mountpoint = "/persist";
-                    mountOptions = [ "compress=zstd" "noatime" "discard=async" "noexec" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                      "discard=async"
+                      "noexec"
+                    ];
                   };
                   "@swap" = {
                     mountpoint = "/.swapvol";
                     swap.swapfile.size = swapsize;
-                    mountOptions = [ "noatime" "discard=async" "noexec" ];
+                    mountOptions = [
+                      "noatime"
+                      "discard=async"
+                      "noexec"
+                    ];
                   };
                   "@var-lib-libvirt" = {
                     mountpoint = "/var/lib/libvirt";
-                    mountOptions = [ "noatime" "discard=async" "noexec" ];
+                    mountOptions = [
+                      "noatime"
+                      "discard=async"
+                      "noexec"
+                    ];
                   };
                   "@nixbldtmp" = {
                     mountpoint = "/var/nixbldtmp";
-                    mountOptions = [ "compress=zstd" "noatime" "discard=async" "nosuid" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                      "discard=async"
+                      "nosuid"
+                    ];
                   };
                 };
               };

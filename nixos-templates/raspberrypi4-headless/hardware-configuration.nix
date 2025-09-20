@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   imports = [
-#    (modulesPath + "/installer/scan/not-detected.nix")
+    #    (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   fileSystems = {

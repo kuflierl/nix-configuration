@@ -40,28 +40,57 @@
                 subvolumes = {
                   "/root" = {
                     mountpoint = "/";
-                    mountOptions = [ "compress=zstd" "noatime" "discard=async" "noexec" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                      "discard=async"
+                      "noexec"
+                    ];
                   };
                   "/home" = {
                     mountpoint = "/home";
-                    mountOptions = [ "compress=zstd" "noatime" "discard=async" "nosuid" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                      "discard=async"
+                      "nosuid"
+                    ];
                   };
                   "/nix" = {
                     mountpoint = "/nix";
-                    mountOptions = [ "compress=zstd" "noatime" "discard=async" "exec" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                      "discard=async"
+                      "exec"
+                    ];
                   };
                   "/log" = {
                     mountpoint = "/var/log";
-                    mountOptions = [ "compress=zstd" "noatime" "discard=async" "noexec" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                      "discard=async"
+                      "noexec"
+                    ];
                   };
                   "/persist" = {
                     mountpoint = "/persist";
-                    mountOptions = [ "compress=zstd" "noatime" "discard=async" "noexec" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                      "discard=async"
+                      "noexec"
+                    ];
                   };
                   "/swap" = {
                     mountpoint = "/.swapvol";
                     swap.swapfile.size = "8G";
-                    mountOptions = [ "noatime" "discard=async" "noexec" ];
+                    mountOptions = [
+                      "noatime"
+                      "discard=async"
+                      "noexec"
+                    ];
                   };
                 };
               };
