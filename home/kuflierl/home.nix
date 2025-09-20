@@ -35,6 +35,9 @@
     nh
     tldr
     ripgrep
+    # network tools
+    dig
+    whois
     # gui tools
     keepassxc
     gnome-calculator
