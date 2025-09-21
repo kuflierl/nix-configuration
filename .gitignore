@@ -1,2 +1,3 @@
-/result
+result
 *.kate-swp
+/.pre-commit-config.yaml
