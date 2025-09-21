@@ -61,6 +61,10 @@
               packageOverrides.treefmt = self.formatter.${system};
             };
             deadnix.enable = true;
+            statix = {
+              enable = true;
+              settings.config = "./statix.toml";
+            };
           };
         };
       });
