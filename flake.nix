@@ -60,6 +60,7 @@
               enable = true;
               packageOverrides.treefmt = self.formatter.${system};
             };
+            deadnix.enable = true;
           };
         };
       });
