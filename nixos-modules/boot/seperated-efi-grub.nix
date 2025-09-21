@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+_: {
   # Use the GRUB bootloader
   boot.loader = {
     grub = {

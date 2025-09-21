@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   services.flatpak.enable = true;
 
   # virt-manager with spice redirection support

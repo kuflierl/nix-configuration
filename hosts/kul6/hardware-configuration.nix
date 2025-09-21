@@ -6,9 +6,11 @@
 
   nix.settings.build-dir = "/var/nixbldtmp";
 
-  hardware.bluetooth.enable = true;
-  hardware.enableRedistributableFirmware = true;
-  hardware.graphics.enable = true;
-  # enable mode switching for multi certain USB WLAN and WWAN adapters
-  hardware.usb-modeswitch.enable = true;
+  hardware = {
+    bluetooth.enable = true;
+    enableRedistributableFirmware = true;
+    graphics.enable = true;
+    # enable mode switching for multi certain USB WLAN and WWAN adapters
+    usb-modeswitch.enable = true;
+  };
 }

@@ -1,4 +1,4 @@
-{ ... }:
+_:
 
 # see https://elvishjerricco.github.io/2018/12/06/encrypted-boot-on-zfs-with-nixos.html
 # Include the cryptographic keys for dm-crypt in the initrd to mitigate

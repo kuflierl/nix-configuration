@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   # inspired from the following:
   # https://github.com/ghostbuster91/blogposts/blob/a2374f0039f8cdf4faddeaaa0347661ffc2ec7cf/router2023-part2/main.md
   imports = [
@@ -44,60 +43,66 @@
       '';
     };
   };
-  # enable systemd networkd for static interfaces
-  systemd.network.enable = true;
-  # set custom interface names
-  systemd.network.links = {
-    "80-iphone-hotspot" = {
-      # the following line checks if the driver is ipeth
-      # ipeth is the kernel driver for ios tethering
-      matchConfig.Driver = "ipheth";
-      linkConfig.Name = "iphone";
-    };
-  };
-  systemd.network.netdevs = {
-    "10-br-lan" = {
-      netdevConfig = {
-        Kind = "bridge";
-        Name = "br-lan";
+  systemd.network = {
+    # enable systemd networkd for static interfaces
+    enable = true;
+    # set custom interface names
+    links = {
+      "80-iphone-hotspot" = {
+        # the following line checks if the driver is ipeth
+        # ipeth is the kernel driver for ios tethering
+        matchConfig.Driver = "ipheth";
+        linkConfig.Name = "iphone";
       };
     };
-  };
-  systemd.network.networks = {
-    "20-end0" = {
-      matchConfig.Name = "end0";
-      linkConfig.RequiredForOnline = "enslaved";
-      networkConfig.Bridge = "br-lan";
-      networkConfig.ConfigureWithoutCarrier = true;
-    };
-    "81-iphone-hotspot" = {
-      matchConfig.Name = "iphone";
-      networkConfig.DHCP = "ipv4";
-      # accept Router Advertisements for Stateless IPv6 Autoconfiguraton (SLAAC)
-      networkConfig.IPv6AcceptRA = true;
-      networkConfig.IPv6PrivacyExtensions = false;
-      networkConfig.IPForward = true;
-      linkConfig.RequiredForOnline = false;
-      dhcpV4Config.RouteMetric = 400;
-    };
-    "30-br-lan" = {
-      matchConfig.Name = "br-lan";
-      networkConfig.DHCP = false;
-      bridgeConfig = { };
-      address = [
-        "192.168.10.1/24"
-      ];
-      networkConfig = {
-        ConfigureWithoutCarrier = true;
+    netdevs = {
+      "10-br-lan" = {
+        netdevConfig = {
+          Kind = "bridge";
+          Name = "br-lan";
+        };
       };
     };
-    "40-wlan0" = {
-      matchConfig.Name = "wlan0";
-      networkConfig.DHCP = true;
-      networkConfig.IPv6AcceptRA = true;
-      linkConfig.RequiredForOnline = false;
-      networkConfig.IPForward = true;
-      dhcpV4Config.RouteMetric = 600;
+    networks = {
+      "20-end0" = {
+        matchConfig.Name = "end0";
+        linkConfig.RequiredForOnline = "enslaved";
+        networkConfig.Bridge = "br-lan";
+        networkConfig.ConfigureWithoutCarrier = true;
+      };
+      "81-iphone-hotspot" = {
+        matchConfig.Name = "iphone";
+        networkConfig = {
+          DHCP = "ipv4";
+          # accept Router Advertisements for Stateless IPv6 Autoconfiguraton (SLAAC)
+          IPv6AcceptRA = true;
+          IPv6PrivacyExtensions = false;
+          IPForward = true;
+        };
+        linkConfig.RequiredForOnline = false;
+        dhcpV4Config.RouteMetric = 400;
+      };
+      "30-br-lan" = {
+        matchConfig.Name = "br-lan";
+        networkConfig.DHCP = false;
+        bridgeConfig = { };
+        address = [
+          "192.168.10.1/24"
+        ];
+        networkConfig = {
+          ConfigureWithoutCarrier = true;
+        };
+      };
+      "40-wlan0" = {
+        matchConfig.Name = "wlan0";
+        networkConfig = {
+          DHCP = true;
+          IPv6AcceptRA = true;
+          IPForward = true;
+        };
+        linkConfig.RequiredForOnline = false;
+        dhcpV4Config.RouteMetric = 600;
+      };
     };
   };
 }

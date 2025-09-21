@@ -9,7 +9,6 @@
     ../../nixos-modules/boot/seperated-efi-grub.nix
     ../../nixos-modules/boot/crypto-stage1.nix
     ../../nixos-modules/network/networkmanager-laptop.nix
-    ../../nixos-modules/network/firewall.nix
     ../../nixos-modules/desktop/hyprland-riced.nix
     ../../nixos-modules/desktop/sddm-xorg-riced.nix
     ../../nixos-modules/sound/pipewire.nix

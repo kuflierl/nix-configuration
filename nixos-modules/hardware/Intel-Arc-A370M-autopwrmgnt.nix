@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   systemd.services."A370M-dGPU-autopwrmgnt" = {
     script = ''
       set -eu

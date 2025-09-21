@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   fileSystems."/persist".neededForBoot = true;
 
   environment.persistence."/persist/system" = {
