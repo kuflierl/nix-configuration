@@ -81,15 +81,6 @@
             ./hosts/kul2/configuration.nix
           ];
         };
-        kul4 = nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          specialArgs = { inherit self; };
-          modules = [
-            sops-nix.nixosModules.sops
-            nixos-hardware.nixosModules.raspberry-pi-4
-            ./hosts/kul4/configuration.nix
-          ];
-        };
         kul6 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
