@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  self,
-  ...
-}:
+{ config, self, ... }:
 let
   wifi_home1_bcfg = {
     sopsFile = self + "/secrets/wifi/home1.yaml";
