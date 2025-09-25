@@ -14,6 +14,7 @@ _:
     # enableStrongSwan = true; # iKEw vpns
   };
 
+  # add dns caching. This reduces load on the network
   services.resolved.enable = true;
 
   # Configure network proxy if necessary
