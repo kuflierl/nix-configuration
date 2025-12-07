@@ -23,7 +23,7 @@
         ret-sync
 #        wasm
         machinelearning
-        ghidraninja-ghidra-scripts
+#        ghidraninja-ghidra-scripts
     ]);
   in with pkgs; [
     # Esentials
@@ -86,7 +86,7 @@
     # system/kde
     # kdePackages.kio-fuse
     # kdePackages.kio-extras
-    syncthingtray-qt6
+    syncthingtray
     # reverse engineering
     ghidra_pkg
     # nvim dep
@@ -152,15 +152,15 @@
     };
     git = {
       enable = true;
-      userEmail = "41301536+kuflierl@users.noreply.github.com";
-      userName = "kuflierl";
+      settings = {
+        user.email = "41301536+kuflierl@users.noreply.github.com";
+        user.name = "kuflierl";
+        init.defaultBranch = "main";
+      };
       signing = {
         format = "openpgp";
         key = "0B3842DA5392223D";
         signByDefault = true;
-      };
-      extraConfig = {
-        init.defaultBranch = "main";
       };
     };
     gh = {
