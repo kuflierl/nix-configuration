@@ -2,7 +2,7 @@
   description = "kuflierl's main nix configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     lanzaboote = {
       url = "github:kuflierl/lanzaboote";
