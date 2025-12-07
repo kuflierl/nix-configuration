@@ -16,4 +16,6 @@ _: {
 
   # enable udev rules for logic analysers
   programs.pulseview.enable = true;
+
+  services.joycond.enable = true;
 }
