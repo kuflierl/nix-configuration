@@ -3,18 +3,25 @@
   imports = [
     ../../nixos-modules/network/networkmanager-laptop.nix
   ];
-  services.syncthing.openDefaultPorts = true;
-  # open firewall for kde connect
-  networking.firewall.allowedTCPPortRanges = [
-    {
-      from = 1714;
-      to = 1764;
-    }
-  ];
-  networking.firewall.allowedUDPPortRanges = [
-    {
-      from = 1714;
-      to = 1764;
-    }
-  ];
+  networking.firewall = {
+    # open firewall for syncthing
+    allowedTCPPorts = [ 22000 ];
+    allowedUDPPorts = [
+      21027
+      22000
+    ];
+    # open firewall for kde connect
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+    allowedUDPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+  };
 }
