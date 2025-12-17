@@ -18,86 +18,90 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages =
-  let
-    ghidra_pkg = pkgs.ghidra.withExtensions (p: with p; [
-        ret-sync
-#        wasm
-        machinelearning
-#        ghidraninja-ghidra-scripts
-    ]);
-  in with pkgs; [
-    # Esentials
-    htop
-    btop
-    ncdu
-    tree
-    nix-output-monitor
-    nh
-    tldr
-    ripgrep
-    file
-    pdftk
-    # network tools
-    dig
-    whois
-    traceroute
-    nmap
-    # gui tools
-    keepassxc
-    gnome-calculator
-    qpwgraph
-    signal-desktop
-    vlc
-    thunderbird
-    mpv
-    finamp
-    kdePackages.kleopatra
-    kdePackages.yakuake
-    wireshark
-    krename
-    handbrake
-    # office
-    libreoffice-qt6
-    # creative
-    krita
-    gimp
-    audacity
-    kdePackages.kdenlive
-    blender
-    obs-studio
-    rnote
-    # technical
-    kicad
-    
-    # emulators
-    cemu
-    fceux
-    dolphin-emu
+    let
+      ghidra_pkg = pkgs.ghidra.withExtensions (
+        p: with p; [
+          ret-sync
+          # wasm
+          machinelearning
+          # ghidraninja-ghidra-scripts
+        ]
+      );
+    in
+    with pkgs;
+    [
+      # Esentials
+      htop
+      btop
+      ncdu
+      tree
+      nix-output-monitor
+      nh
+      tldr
+      ripgrep
+      file
+      pdftk
+      # network tools
+      dig
+      whois
+      traceroute
+      nmap
+      # gui tools
+      keepassxc
+      gnome-calculator
+      qpwgraph
+      signal-desktop
+      vlc
+      thunderbird
+      mpv
+      finamp
+      kdePackages.kleopatra
+      kdePackages.yakuake
+      wireshark
+      krename
+      handbrake
+      # office
+      libreoffice-qt6
+      # creative
+      krita
+      gimp
+      audacity
+      kdePackages.kdenlive
+      blender
+      obs-studio
+      rnote
+      # technical
+      kicad
 
-    # programming
-    # gui
-    imhex
-    logisim-evolution
-    ## lsp
-    nixd
-    clang-tools
-    python3Packages.python-lsp-server
-    marksman # markdown
-    yaml-language-server
-    rust-analyzer
-    # debuggers
-    gdb
-    # system/kde
-    # kdePackages.kio-fuse
-    # kdePackages.kio-extras
-    syncthingtray
-    # reverse engineering
-    ghidra_pkg
-    # nvim dep
-    neovim
-    clipcat
-    nerd-fonts.fira-code
-  ];
+      # emulators
+      cemu
+      fceux
+      dolphin-emu
+
+      # programming
+      # gui
+      imhex
+      logisim-evolution
+      ## lsp
+      nixd
+      clang-tools
+      python3Packages.python-lsp-server
+      marksman # markdown
+      yaml-language-server
+      rust-analyzer
+      # debuggers
+      gdb
+      # system/kde
+      # kdePackages.kio-fuse
+      # kdePackages.kio-extras
+      syncthingtray
+      # reverse engineering
+      ghidra_pkg
+      # nvim dep
+      neovim
+      clipcat
+      nerd-fonts.fira-code
+    ];
 
   fonts.fontconfig.enable = true;
 
@@ -144,7 +148,8 @@
         "privacy.resistFingerprinting" = true;
         "privacy.clearOnShutdown.history" = false;
         "privacy.trackingprotection.enabled" = true;
-        "privacy.sanitize.pending" = ''[{"id":"shutdown","itemsToClear":["cache","cookiesAndStorage"],"options":{}}]'';
+        "privacy.sanitize.pending" =
+          ''[{"id":"shutdown","itemsToClear":["cache","cookiesAndStorage"],"options":{}}]'';
         "privacy.fingerprintingProtection" = true;
         "captivedetect.canonicalURL" = "http://detectportal.firefox.com/canonical.html";
         "browser.contentblocking.category" = "strict";
@@ -152,7 +157,7 @@
     };
     thunderbird.enable = false;
     neovim = {
-      
+
     };
     git = {
       enable = true;
@@ -171,7 +176,7 @@
       enable = true;
       gitCredentialHelper.enable = true;
     };
-};
+  };
 
   # todo
   # restic -r sftp:kuflierl@kulnas1.lan:/srv/data/backups/kuflierl/kul6 backup /home/kuflierl --exclude-caches --exclude-file ~/restic-exclude.txt
