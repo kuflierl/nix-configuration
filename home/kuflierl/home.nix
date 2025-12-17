@@ -35,9 +35,13 @@
     nh
     tldr
     ripgrep
+    file
+    pdftk
     # network tools
     dig
     whois
+    traceroute
+    nmap
     # gui tools
     keepassxc
     gnome-calculator
