@@ -165,6 +165,7 @@
         user.email = "41301536+kuflierl@users.noreply.github.com";
         user.name = "kuflierl";
         init.defaultBranch = "main";
+        rerere.enabled = true;
       };
       signing = {
         format = "openpgp";
