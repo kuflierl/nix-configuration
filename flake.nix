@@ -80,14 +80,6 @@
       });
 
       nixosConfigurations = {
-        kul2 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            disko.nixosModules.disko
-            lanzaboote.nixosModules.lanzaboote
-            ./hosts/kul2/configuration.nix
-          ];
-        };
         kul6 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
