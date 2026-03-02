@@ -1,10 +1,22 @@
+# treefmt.nix
 _: {
   # Used to find the project root
   projectRootFile = "flake.nix";
-  # Enable the terraform formatter
-  programs.nixfmt.enable = true;
 
-  #programs.clang-format.enable = true;
-
-  #programs.ruff-format.enable = true;
+  programs = {
+    # rfc nix formater
+    nixfmt = {
+      enable = true;
+      strict = true;
+    };
+    # detect antipaterns in nix code
+    statix = {
+      enable = true;
+      disabled-lints = [ ];
+    };
+    # look for dead nix code
+    deadnix = {
+      enable = true;
+    };
+  };
 }
