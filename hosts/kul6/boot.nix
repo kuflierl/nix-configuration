@@ -1,8 +1,6 @@
 { ... }:
 {
-  imports = [
-    ../../nixos-modules/boot/secureboot.nix
-  ];
+  imports = [ ../../nixos-modules/boot/secureboot.nix ];
 
   boot = {
     lanzaboote.generateKeysIfNotExist = true;

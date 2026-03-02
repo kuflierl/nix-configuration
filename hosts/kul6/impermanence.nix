@@ -33,15 +33,9 @@ _: {
     enable = true;
     services.rollback = {
       description = "Rollback BTRFS root subvolume to a pristine state";
-      wantedBy = [
-        "initrd.target"
-      ];
-      after = [
-        "systemd-cryptsetup@nixos.service"
-      ];
-      before = [
-        "sysroot.mount"
-      ];
+      wantedBy = [ "initrd.target" ];
+      after = [ "systemd-cryptsetup@nixos.service" ];
+      before = [ "sysroot.mount" ];
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
       script =

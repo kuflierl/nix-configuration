@@ -86,9 +86,7 @@ _: {
         matchConfig.Name = "br-lan";
         networkConfig.DHCP = false;
         bridgeConfig = { };
-        address = [
-          "192.168.10.1/24"
-        ];
+        address = [ "192.168.10.1/24" ];
         networkConfig = {
           ConfigureWithoutCarrier = true;
         };

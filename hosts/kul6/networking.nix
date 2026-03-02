@@ -1,8 +1,6 @@
 { ... }:
 {
-  imports = [
-    ../../nixos-modules/network/networkmanager-laptop.nix
-  ];
+  imports = [ ../../nixos-modules/network/networkmanager-laptop.nix ];
   networking.firewall = {
     # open firewall for syncthing
     allowedTCPPorts = [ 22000 ];

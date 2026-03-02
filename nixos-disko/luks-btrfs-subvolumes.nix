@@ -20,9 +20,7 @@
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
-              mountOptions = [
-                "defaults"
-              ];
+              mountOptions = [ "defaults" ];
             };
           };
           luks = {

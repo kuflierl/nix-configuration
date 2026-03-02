@@ -1,3 +1,1 @@
-_: {
-  programs.hyprland.enable = true;
-}
+_: { programs.hyprland.enable = true; }
