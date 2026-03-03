@@ -3,7 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
     lanzaboote = {
       url = "github:kuflierl/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,8 +41,8 @@
 
   outputs =
     {
-      self,
       nixpkgs,
+      flake-parts,
       sops-nix,
       lanzaboote,
       disko,
@@ -48,66 +51,69 @@
       git-hooks,
       treefmt-nix,
       home-manager,
+      ...
     }@inputs:
-    let
-      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
-      treefmtEval = forAllSystems (
-        system: treefmt-nix.lib.evalModule nixpkgs.legacyPackages.${system} ./treefmt.nix
-      );
-    in
-    {
-      formatter = forAllSystems (system: treefmtEval.${system}.config.build.wrapper);
+    flake-parts.lib.mkFlake { inherit inputs; } (_: {
+      systems = nixpkgs.lib.systems.flakeExposed;
 
-      checks = forAllSystems (system: {
-        pre-commit-check = git-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            convco.enable = true;
-            treefmt = {
-              enable = true;
-              packageOverrides.treefmt = self.formatter.${system};
+      perSystem =
+        {
+          config,
+          pkgs,
+          system,
+          ...
+        }:
+        let
+          treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+        in
+        {
+          formatter = treefmtEval.config.build.wrapper;
+          checks.pre-commit-check = git-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              convco.enable = true;
+              treefmt = {
+                enable = true;
+                packageOverrides.treefmt = config.formatter;
+              };
             };
           };
+          devShells.default = pkgs.mkShell {
+            inherit (config.checks.pre-commit-check) shellHook;
+            buildInputs = config.checks.pre-commit-check.enabledPackages;
+          };
         };
-      });
 
-      devShells = forAllSystems (system: {
-        default = nixpkgs.legacyPackages.${system}.mkShell {
-          inherit (self.checks.${system}.pre-commit-check) shellHook;
-          buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
-          # packages = with nixpkgs.legacyPackages.${system}; [];
+      flake = {
+        nixosConfigurations = {
+          kul6 = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = { inherit nixpkgs; };
+            modules = [
+              disko.nixosModules.disko
+              impermanence.nixosModules.impermanence
+              sops-nix.nixosModules.sops
+              lanzaboote.nixosModules.lanzaboote
+              nixos-hardware.nixosModules.dell-xps-15-9530
+              (import ./nixos-disko/kul6.nix {
+                device = "/dev/nvme0n1";
+                swapsize = "64G";
+              })
+              ./hosts/kul6/configuration.nix
+            ];
+          };
         };
-      });
 
-      nixosConfigurations = {
-        kul6 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            disko.nixosModules.disko
-            impermanence.nixosModules.impermanence
-            sops-nix.nixosModules.sops
-            lanzaboote.nixosModules.lanzaboote
-            nixos-hardware.nixosModules.dell-xps-15-9530
-            (import ./nixos-disko/kul6.nix {
-              device = "/dev/nvme0n1";
-              swapsize = "64G";
-            })
-            ./hosts/kul6/configuration.nix
-          ];
+        homeConfigurations."kuflierl" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+
+          # Specify your home configuration modules here, for example,
+          # the path to your home.nix.
+          modules = [ ./home/kuflierl/home.nix ];
+
+          # Optionally use extraSpecialArgs
+          # to pass through arguments to home.nix
         };
       };
-
-      homeConfigurations."kuflierl" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [ ./home/kuflierl/home.nix ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
-      };
-    };
-
+    });
 }
