@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -37,11 +38,18 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      # causes breakage on stable
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.flake-parts.follows = "flake-parts";
+    };
   };
 
   outputs =
     {
       nixpkgs,
+      nixpkgs-unstable,
       flake-parts,
       sops-nix,
       lanzaboote,
@@ -51,6 +59,7 @@
       git-hooks,
       treefmt-nix,
       home-manager,
+      nvf,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } (_: {
@@ -82,6 +91,12 @@
             inherit (config.checks.pre-commit-check) shellHook;
             buildInputs = config.checks.pre-commit-check.enabledPackages;
           };
+
+          packages.myNVF =
+            (nvf.lib.neovimConfiguration {
+              pkgs = nixpkgs-unstable.legacyPackages.${system};
+              modules = [ ./nvf ];
+            }).neovim;
         };
 
       flake = {
@@ -113,6 +128,7 @@
 
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix
+          # extraSpecialArgs = { inherit self; };
         };
       };
     });
