@@ -56,7 +56,11 @@ _: {
       markdown.enable = true;
 
       # Favourite Languages
-      nix.enable = true;
+      nix = {
+        enable = true;
+        format.type = [ "nixfmt" ];
+        lsp.servers = [ "nixd" ];
+      };
       bash.enable = true;
       rust = {
         enable = true;
