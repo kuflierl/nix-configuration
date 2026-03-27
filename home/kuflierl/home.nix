@@ -27,6 +27,11 @@
           # ghidraninja-ghidra-scripts
         ]
       );
+      fceux = pkgs.fceux.override {
+        minizip = pkgs.minizip-ng.overrideAttrs (prev: {
+          cmakeFlags = prev.cmakeFlags ++ [ "-DMZ_LIB_SUFFIX=''" ];
+        });
+      };
     in
     with pkgs;
     [
