@@ -35,7 +35,7 @@
     in
     with pkgs;
     [
-      # Esentials
+      # Essentials
       htop
       btop
       ncdu
@@ -51,7 +51,7 @@
       whois
       traceroute
       nmap
-      # gui tools
+      # GUI tools
       keepassxc
       gnome-calculator
       qpwgraph
@@ -84,10 +84,10 @@
       dolphin-emu
 
       # programming
-      # gui
+      # GUI
       imhex
       logisim-evolution
-      ## lsp
+      ## LSP
       nixd
       clang-tools
       python3Packages.python-lsp-server
