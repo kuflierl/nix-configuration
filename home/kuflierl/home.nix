@@ -166,6 +166,7 @@
     };
     git = {
       enable = true;
+      lfs.enable = true;
       settings = {
         user.email = "41301536+kuflierl@users.noreply.github.com";
         user.name = "kuflierl";
