@@ -9,7 +9,7 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     lanzaboote = {
-      url = "github:kuflierl/lanzaboote";
+      url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";

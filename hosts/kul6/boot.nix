@@ -3,7 +3,7 @@
   imports = [ ../../nixos-modules/boot/secureboot.nix ];
 
   boot = {
-    lanzaboote.generateKeysIfNotExist = true;
+    lanzaboote.autoGenerateKeys.enable = true;
 
     plymouth = {
       enable = true;
