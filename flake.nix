@@ -48,6 +48,7 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       nixpkgs-unstable,
       flake-parts,
@@ -100,6 +101,8 @@
         };
 
       flake = {
+        overlays.default = import ./overlays;
+
         nixosConfigurations = {
           kul6 = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
@@ -128,7 +131,7 @@
 
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix
-          # extraSpecialArgs = { inherit self; };
+          extraSpecialArgs = { inherit self; };
         };
       };
     });

@@ -1,10 +1,17 @@
-{ config, pkgs, ... }:
+{
+  self,
+  config,
+  pkgs,
+  ...
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "kuflierl";
   home.homeDirectory = "/home/${config.home.username}";
+
+  nixpkgs.overlays = [ self.overlays.default ];
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -27,11 +34,7 @@
           # ghidraninja-ghidra-scripts
         ]
       );
-      fceux = pkgs.fceux.override {
-        minizip = pkgs.minizip-ng.overrideAttrs (prev: {
-          cmakeFlags = prev.cmakeFlags ++ [ "-DMZ_LIB_SUFFIX=''" ];
-        });
-      };
+
     in
     with pkgs;
     [
