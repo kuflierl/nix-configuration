@@ -106,7 +106,7 @@
         nixosConfigurations = {
           kul6 = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
-            specialArgs = { inherit nixpkgs; };
+            specialArgs = { inherit self nixpkgs; };
             modules = [
               disko.nixosModules.disko
               impermanence.nixosModules.impermanence

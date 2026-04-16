@@ -2,7 +2,12 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, nixpkgs, ... }:
+{
+  self,
+  pkgs,
+  nixpkgs,
+  ...
+}:
 {
   imports = [
     ../../nixos-modules/misc/flakes-enable.nix
@@ -19,6 +24,8 @@
     # users
     ../../nixos-modules/users/kuflierl/default.nix
   ];
+
+  nixpkgs.overlays = [ self.overlays.default ];
 
   networking.hostName = "kul6";
 
