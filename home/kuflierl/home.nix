@@ -181,6 +181,12 @@
         key = "0B3842DA5392223D";
         signByDefault = true;
       };
+      includes = [
+        {
+          condition = "gitdir:~/Documents/Uni/";
+          path = "~/Documents/Uni/.gitconfig";
+        }
+      ];
     };
     gh = {
       enable = true;
