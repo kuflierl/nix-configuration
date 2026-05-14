@@ -30,7 +30,7 @@ _: {
       # lspSignature.enable = false; # conflicts with blink in maximal
       otter-nvim.enable = true; # completion help
       nvim-docs-view.enable = true;
-      harper-ls.enable = true; # spellcheck
+      presets.harper.enable = true; # spellcheck
     };
 
     debugger = {
@@ -85,7 +85,7 @@ _: {
       sql.enable = false;
       java.enable = false;
       kotlin.enable = false;
-      ts.enable = false;
+      typescript.enable = false;
       go.enable = false;
       lua.enable = false;
       zig.enable = false;
@@ -111,7 +111,6 @@ _: {
       just.enable = false;
       qml.enable = false;
       jinja.enable = false;
-      tailwind.enable = false;
       svelte.enable = false;
       tera.enable = false;
 
@@ -238,7 +237,6 @@ _: {
     notes = {
       neorg.enable = false;
       orgmode.enable = false;
-      mind-nvim.enable = false;
       todo-comments.enable = true;
     };
 
