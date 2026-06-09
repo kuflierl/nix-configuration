@@ -1,6 +1,11 @@
 _: {
   fileSystems."/persist".neededForBoot = true;
 
+  system.etc.overlay = {
+    enable = true;
+    mutable = true; # may still be needed for auto-generated files
+  };
+
   environment.persistence."/persist/system" = {
     hideMounts = true;
     directories = [
