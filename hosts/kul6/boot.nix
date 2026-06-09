@@ -1,8 +1,11 @@
-{ ... }: {
-  imports = [ ../../nixos-modules/boot/secureboot.nix ];
-
+_: {
   boot = {
-    lanzaboote.autoGenerateKeys.enable = true;
+    # Lanzaboote secureboot
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+      autoGenerateKeys.enable = true;
+    };
 
     plymouth = {
       enable = true;
