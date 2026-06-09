@@ -11,8 +11,6 @@
 {
   imports = [
     ../../nixos-modules/misc/ios-device-core.nix
-    ../../nixos-modules/sound/pipewire.nix
-    ../../nixos-modules/desktop/kde-plasma-6.nix
     # system config
     ./impermanence.nix
     ./hardware-configuration.nix
@@ -20,6 +18,7 @@
     ./misc.nix
     ./boot.nix
     ./networking.nix
+    ./desktop.nix
     # users
     ../../nixos-modules/users/kuflierl/default.nix
   ];
