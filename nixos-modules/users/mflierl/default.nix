@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{ config, ... }: {
   sops.secrets."users/mflierl/unix_hash" = {
     format = "yaml";
     key = "unix_hash";

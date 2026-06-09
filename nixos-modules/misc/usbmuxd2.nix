@@ -1,5 +1,1 @@
-{ pkgs, ... }:
-
-{
-  services.usbmuxd.package = pkgs.usbmuxd2;
-}
+{ pkgs, ... }: { services.usbmuxd.package = pkgs.usbmuxd2; }

@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   imports = [ ../../nixos-modules/boot/secureboot.nix ];
 
   boot = {

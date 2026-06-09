@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   # configuration for travel service hotspot
   imports = [
     ../../nixos-templates/raspberrypi4-headless/configuration.nix

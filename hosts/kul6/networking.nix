@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   imports = [ ../../nixos-modules/network/networkmanager-laptop.nix ];
   networking.networkmanager.plugins = [ pkgs.networkmanager-openconnect ];
   networking.firewall = {

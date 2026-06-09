@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{ config, ... }: {
   networking.wireless = {
     enable = true;
     interfaces = [ "wlan0" ];
