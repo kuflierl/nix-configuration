@@ -31,7 +31,7 @@
           ret-sync
           # wasm
           machinelearning
-          # ghidraninja-ghidra-scripts
+          ghidraninja-ghidra-scripts
         ]
       );
 
