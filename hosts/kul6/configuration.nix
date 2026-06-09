@@ -10,7 +10,6 @@
 }:
 {
   imports = [
-    ../../nixos-modules/misc/flakes-enable.nix
     ../../nixos-modules/misc/ios-device-core.nix
     ../../nixos-modules/sound/pipewire.nix
     ../../nixos-modules/desktop/kde-plasma-6.nix
