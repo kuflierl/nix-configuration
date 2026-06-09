@@ -4,12 +4,12 @@ _: {
   environment.persistence."/persist/system" = {
     hideMounts = true;
     directories = [
-      "/var/lib/bluetooth" # bluetooth settings
+      "/var/lib/bluetooth" # bluetooth settings and connected devices
       "/var/lib/nixos" # persistent user uid mappings
       "/var/lib/upower" # battery power statistics
       "/var/lib/sbctl" # secureboot keys
       "/var/lib/NetworkManager" # network manager leases, keys, etc
-      "/var/lib/systemd/coredump"
+      "/var/lib/systemd" # various keys, timer timestamps and coredumps
       "/var/db/sudo/lectured" # sudo lectures
       "/etc/NetworkManager/system-connections" # system connections network manager
     ];
