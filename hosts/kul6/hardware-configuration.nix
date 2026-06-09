@@ -1,5 +1,11 @@
 { ... }: {
-  imports = [ ../../nixos-modules/hardware/Intel-Arc-A370M-autopwrmgnt.nix ];
+  imports = [
+    ../../nixos-modules/hardware/Intel-Arc-A370M-autopwrmgnt.nix
+    (import ./disko.nix {
+      device = "/dev/nvme0n1";
+      swapsize = "64G";
+    })
+  ];
 
   nix.settings.build-dir = "/var/nixbldtmp";
 

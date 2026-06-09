@@ -2,13 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{
-  self,
-  pkgs,
-  nixpkgs,
-  ...
-}:
-{
+{ pkgs, ... }: {
   imports = [
     ../../nixos-modules/misc/ios-device-core.nix
     # system config
@@ -22,8 +16,6 @@
     # users
     ../../nixos-modules/users/kuflierl/default.nix
   ];
-
-  nixpkgs.overlays = [ self.overlays.default ];
 
   networking.hostName = "kul6";
 
@@ -64,8 +56,6 @@
       ];
     };
   };
-
-  nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
 
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
