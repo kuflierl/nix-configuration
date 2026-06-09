@@ -116,6 +116,7 @@
               sops-nix.nixosModules.sops
               lanzaboote.nixosModules.lanzaboote
               nixos-hardware.nixosModules.dell-xps-15-9530
+              ./nixos-modules/common
               (import ./nixos-disko/kul6.nix {
                 device = "/dev/nvme0n1";
                 swapsize = "64G";
