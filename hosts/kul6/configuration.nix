@@ -80,7 +80,7 @@
     openssh.enable = false;
 
     # Enable CUPS to print documents.
-    printing.enable = true;
+    # printing.enable = true;
   };
 
   # Copy the NixOS configuration file and link it from the resulting system
