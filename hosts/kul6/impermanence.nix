@@ -6,32 +6,50 @@ _: {
     mutable = true; # may still be needed for auto-generated files
   };
 
-  environment.persistence."/persist/system" = {
-    hideMounts = true;
-    directories = [
-      "/var/lib/bluetooth" # bluetooth settings and connected devices
-      "/var/lib/nixos" # persistent user uid mappings
-      "/var/lib/upower" # battery power statistics
-      "/var/lib/sbctl" # secureboot keys
-      "/var/lib/NetworkManager" # network manager leases, keys, etc
-      "/var/lib/systemd" # various keys, timer timestamps and coredumps
-      "/var/db/sudo/lectured" # sudo lectures
-      "/etc/NetworkManager/system-connections" # system connections network manager
-    ];
-    files = [
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
-      "/etc/ssh/ssh_host_rsa_key"
-      "/etc/ssh/ssh_host_rsa_key.pub"
-      "/etc/machine-id"
-      #  "/var/lib/logrotate.status"
-      {
-        file = "/var/keys/secret_file";
-        parentDirectory = {
-          mode = "u=rwx,g=,o=";
-        };
-      }
-    ];
+  preservation = {
+    enable = true;
+    preserveAt."/persist/system" = {
+      commonMountOptions = [ "x-gvfs-hide" ];
+      directories = [
+        "/var/lib/bluetooth" # bluetooth settings and connected devices
+        "/var/lib/upower" # battery power statistics
+        "/var/lib/sbctl" # secureboot keys
+        "/var/lib/NetworkManager" # network manager leases, keys, etc
+        "/var/lib/systemd" # various keys, timer timestamps and coredumps
+        "/etc/NetworkManager/system-connections" # system connections network manager
+        {
+          # persistent user uid mappings
+          directory = "/var/lib/nixos";
+          inInitrd = true;
+        }
+      ];
+      files = [
+        {
+          file = "/etc/machine-id";
+          inInitrd = true;
+        }
+        {
+          file = "/etc/ssh/ssh_host_rsa_key";
+          how = "symlink";
+          configureParent = true;
+        }
+        {
+          file = "/etc/ssh/ssh_host_rsa_key.pub";
+          how = "symlink";
+          configureParent = true;
+        }
+        {
+          file = "/etc/ssh/ssh_host_ed25519_key";
+          how = "symlink";
+          configureParent = true;
+        }
+        {
+          file = "/etc/ssh/ssh_host_ed25519_key.pub";
+          how = "symlink";
+          configureParent = true;
+        }
+      ];
+    };
   };
 
   boot.initrd.systemd = {

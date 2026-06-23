@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    preservation.url = "github:nix-community/preservation";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -23,11 +24,6 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    impermanence = {
-      url = "github:nix-community/impermanence";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
     };
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
@@ -59,7 +55,7 @@
       lanzaboote,
       disko,
       nixos-hardware,
-      impermanence,
+      preservation,
       git-hooks,
       treefmt-nix,
       home-manager,
@@ -112,7 +108,7 @@
             specialArgs = { inherit self nixpkgs; };
             modules = [
               disko.nixosModules.disko
-              impermanence.nixosModules.impermanence
+              preservation.nixosModules.preservation
               sops-nix.nixosModules.sops
               lanzaboote.nixosModules.lanzaboote
               nixos-hardware.nixosModules.dell-xps-15-9530
