@@ -24,7 +24,11 @@
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
-              mountOptions = [ "defaults" ];
+              # make /boot unreadable for everyone but root due to https://github.com/NixOS/nixpkgs/issues/279362
+              mountOptions = [
+                "fmask=0077"
+                "dmask=0077"
+              ];
             };
           };
           luks = {
