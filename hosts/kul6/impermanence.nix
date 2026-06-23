@@ -52,6 +52,19 @@ _: {
     };
   };
 
+  # bugfix with machine-id-setup
+  # https://nix-community.github.io/preservation/examples.html#compatibility-with-systemds-conditionfirstboot
+  systemd.services.systemd-machine-id-commit = {
+    unitConfig.ConditionPathIsMountPoint = [
+      ""
+      "/persistent/etc/machine-id"
+    ];
+    serviceConfig.ExecStart = [
+      ""
+      "systemd-machine-id-setup --commit --root /persist/system"
+    ];
+  };
+
   boot.initrd.systemd = {
     enable = true;
     services.rollback = {
