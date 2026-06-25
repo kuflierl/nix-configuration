@@ -113,6 +113,7 @@
               lanzaboote.nixosModules.lanzaboote
               nixos-hardware.nixosModules.dell-xps-15-9530
               ./nixos-modules/common
+              ./nixos-modules/common-config
               ./hosts/kul6/configuration.nix
             ];
           };
