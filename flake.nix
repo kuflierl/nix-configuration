@@ -41,7 +41,6 @@
       url = "github:NotAShelf/nvf";
       # causes breakage on stable
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-      inputs.flake-parts.follows = "flake-parts";
     };
   };
 
