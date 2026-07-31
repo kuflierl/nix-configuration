@@ -45,7 +45,6 @@
       ncdu
       tree
       nix-output-monitor
-      nh
       tldr
       ripgrep
       file
@@ -152,6 +151,11 @@
     gh = {
       enable = true;
       gitCredentialHelper.enable = true;
+    };
+
+    nh = {
+      enable = true;
+      flake = "~/nix-configuration";
     };
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
