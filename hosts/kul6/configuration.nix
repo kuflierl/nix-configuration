@@ -73,6 +73,9 @@
     enableSSHSupport = true;
   };
 
+  # emulation for aarch64
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # List services that you want to enable:
 
   services = {
