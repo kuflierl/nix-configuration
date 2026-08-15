@@ -54,6 +54,10 @@
       whois
       traceroute
       nmap
+      net-tools
+      # hw tools
+      usbutils
+      pciutils
       # GUI tools
       keepassxc
       gnome-calculator
