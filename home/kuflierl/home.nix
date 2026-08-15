@@ -91,6 +91,8 @@
       dolphin-emu
 
       # programming
+      devenv
+      sops
       # GUI
       imhex
       logisim-evolution
