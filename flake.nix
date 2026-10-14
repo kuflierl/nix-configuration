@@ -29,10 +29,6 @@
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,6 +37,12 @@
       url = "github:NotAShelf/nvf";
       # causes breakage on stable
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    # Add cachix/devenv as an input so we can provide a devenv-based devShell
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -56,9 +58,9 @@
       nixos-hardware,
       preservation,
       git-hooks,
-      treefmt-nix,
       home-manager,
       nvf,
+      devenv,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } (_: {
@@ -72,23 +74,27 @@
           ...
         }:
         let
-          treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
-        in
-        {
-          formatter = treefmtEval.config.build.wrapper;
-          checks.pre-commit-check = git-hooks.lib.${system}.run {
+          # compute the git-hooks pre-commit check used to provide packages and shellHook
+          preCommitCheck = git-hooks.lib.${system}.run {
             src = ./.;
             hooks = {
               convco.enable = true;
               treefmt = {
                 enable = true;
-                packageOverrides.treefmt = config.formatter;
               };
             };
           };
-          devShells.default = pkgs.mkShell {
-            inherit (config.checks.pre-commit-check) shellHook;
-            buildInputs = config.checks.pre-commit-check.enabledPackages;
+        in
+        {
+          checks.pre-commit-check = preCommitCheck;
+
+          # Replace the old mkShell devShell with a devenv-based shell. The
+          # devenv configuration is kept in ./devenv.nix and receives the
+          # computed preCommitCheck so it can include the same packages and
+          # shellHook that the old shell provided.
+          devShells.default = devenv.lib.mkShell {
+            inherit pkgs;
+            modules = [ (import ./devenv.nix { inherit pkgs preCommitCheck; }) ];
           };
 
           packages.myNVF =
