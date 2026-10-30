@@ -1,11 +1,15 @@
 { ... }: {
   imports = [
-    ../../nixos-modules/hardware/Intel-Arc-A370M-autopwrmgnt.nix
     (import ./disko.nix {
       device = "/dev/nvme0n1";
       swapsize = "64G";
     })
   ];
+
+  services.udev.extraRules = ''
+    # Intel Arc A370M dGPU: restore automatic power management.
+    ACTION=="add|bind", SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x5693", TEST=="power/control", ATTR{power/control}="auto"
+  '';
 
   nix.settings.build-dir = "/var/nixbldtmp";
 
