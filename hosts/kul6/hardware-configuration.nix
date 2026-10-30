@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   imports = [
     (import ./disko.nix {
       device = "/dev/nvme0n1";
@@ -24,5 +24,9 @@
     };
     # enable mode switching for multi certain USB WLAN and WWAN adapters
     usb-modeswitch.enable = true;
+  };
+
+  specialisation.xe-graphics.configuration = {
+    hardware.intelgpu.driver = lib.mkForce "xe";
   };
 }
