@@ -17,6 +17,11 @@
     bluetooth.enable = true;
     enableRedistributableFirmware = true;
     graphics.enable = true;
+    intelgpu = {
+      driver = "i915";
+      vaapiDriver = "intel-media-driver";
+      mediaRuntime = "vpl-gpu-rt";
+    };
     # enable mode switching for multi certain USB WLAN and WWAN adapters
     usb-modeswitch.enable = true;
   };
